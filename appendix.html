@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>14&nbsp; Appendix – Healthcare-R-Book</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./geospatial-analysis.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./appendix.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Appendix</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Healthcare-R-Book</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-wrangling-images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Medical Images</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-wrangling-signal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Signal processing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-wrangling-python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Python</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multivariate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Multivariate Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./machine-learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Machine learning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./graph-theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Graph Theory</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./natural-language-processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Natural language processing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bayesian-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bayesian Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./operational-research.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Operational Research</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./geospatial-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Geospatial analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Appendix</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#brief-introduction-to-matrix" id="toc-brief-introduction-to-matrix" class="nav-link active" data-scroll-target="#brief-introduction-to-matrix"><span class="header-section-number">14.1</span> Brief introduction to Matrix</a></li>
+  <li><a href="#regression" id="toc-regression" class="nav-link" data-scroll-target="#regression"><span class="header-section-number">14.2</span> Regression</a>
+  <ul class="collapse">
+  <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression"><span class="header-section-number">14.2.1</span> Linear regression</a></li>
+  <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression"><span class="header-section-number">14.2.2</span> Logistic regression</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Appendix</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="brief-introduction-to-matrix" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="brief-introduction-to-matrix"><span class="header-section-number">14.1</span> Brief introduction to Matrix</h2>
+<p>Eigenvector (characteristic vector) and eigenvalue (characteristic value) are useful in solving system of linear equations and providing quicker solution to solving task such as finding the nth power of a matrix. The eigenvector v of a n x n square matrix M is defined as a non-zero vector of M such that the product of Mev is equal to the product of the scalar eigenvalue λ and v.</p>
+<p>Eigenvector analysis can be used to describe pattern. Here, the eigenvector has an interpretation in term of the direction of the data and the eigenvalue provides a scaling measure of the length or change in direction of the vector (when both are multiplied). Using the description above regarding finding the nth power of a matrix M, the eigenvectors remain unchanged but the eigenvalues change in proportion to the nth power of M.</p>
+<p>In terms of applications, eigen decomposition approach provides a non-bias method for discovering pattern in complex data; this is typically performed by eigen decomposition of the covariance matrix. This approach had been used in describing pattern of infarct in hypoxic ischaemic injury780, facial recognition.</p>
+<p>In the section on regression, we can show that the eigenvalue can be interpreted in term of the variance of data. Eigenvalue can be described</p>
+<pre><code>    I is the n x n identity matrix</code></pre>
+<p>In geometric term, the eigenvalue describes the length of its associated eigenvector and in regression analyss, it can be considered as the variance of the data. Eigenvalue is calculated by finding the solution for the root of characteristic polynomial equation. For a 2 x 2 matrix,</p>
+<p>The characteristic polynomial is given by</p>
+<p>The Trace(M) is given by The determinant is given by<br>
+The quadratic formula can be used to solve for λ.</p>
+<p>In this case, the eigenvalue is -1 and 3. The eigenvector of M is given by</p>
+<p>The identity matrix consist of ones on the diagnonal and zero elsewhere. For a 2 x 2 matrix, the identity matrix is</p>
+<p>For the eigenvalue -1, its eigenvector is given by</p>
+<p>The eigenvectors include (1, 1) . For the eigenvalue 3, its associated eigenctor include (1, -1). The solution for the characteristic equation becomes more complex as the size of the matrix increase. For large matrices, the power method is used to derive the eigenvalue. The determinant is equal to the product if the eigenvalues (-1 x 3= -3). The trace is equal to the sum of the eigenvalues (-1+3=2) or the sum of the diagonal of the matrix (1+1 =2).</p>
+<p>A matrix is invertible (non-singular) if it satisfies the following</p>
+<p>The matrix M-1 is the inverse of matrix M. The inverse of M is calculated as follow.</p>
+<p>w=1, x=0, y=1,z=0 Matrix which cannot be inverted is termed singular. The determinant of a square matrix is zero. The significance of invertible matrix will be seen in the section on collinearity when dealing with regression analsysis.</p>
+<p>Sparse matrix is a matrix populated mostly by zeros. In a network sense it implies lack of cohesion in the network. Inverting sparse matrix is challenging due to the reduced rank associate with this type of matrix. The solutions require various form of penalisation (penalised regression is discuss next under Regression).</p>
+<p>The null space of a matrix can be considered as the solutions to homogenous system of linear equations.</p>
+<p>The null space of a matrix is also termed the kernel of that matrix (3, -9, 1). As shown above, the null space of a matrix contains a zero vector. In other word the coefficient matrix is zeros. The augemented matrix is displayed on the left. The null space is a subspace of this matrix.</p>
+<p>The rank of matrix of a matrix can be considered as a measure of the ‘non-singularness’ of a matrix. For example, a 3 x 4 matrix with 2 independent rows has rank of 2. In other word, it describes the number of independent columns of a matrix or its eigenvector. It also describes the dimension of the image of the linear transformation that is performed on the matrix. Often the expression that the matrix is full rank (contains independent rows and columns of data) is used in regression to infer that the matrix is invertible and the data are non-collinear. An example of zero rank or collinear matrix is shown here</p>
+<p>Observe that the second column is three times the first column. The determinant of this matrix is 3 x 6 – 2 x 9=0. This matrix is not invertible and rank deficient. The interpretation is that the rank of the augmented matrix is equal or to that for the coefficient matrix, the solution to system of linear equation is stable. If the rank of an augmented matrix is larger than the coefficient matrix, the matrix is rank deficient.mA special form of multivariate regression use the rank of matrix in regression (reduced rank regression). This type of regression is useful in the case of of minority class distribution where the majority of the data are at one end of the spectrum.</p>
+<p>A positive semi-definite matrix is invertible and has full rank. It is defined as a matrix which can be obtained by the multiplication of a matrix and its transpose (denoted by T in upper case).</p>
+<p>Such a matrix is symmetrical. Examples include correlation and covariance matrices.</p>
+</section>
+<section id="regression" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="regression"><span class="header-section-number">14.2</span> Regression</h2>
+<p>In the section below, a matrix approach to regression is provided. This step was performed as it explains for issues encountered when doing regression analyses. It is easier to explain collinearity using matrix. Examples of performing regression analyses and steps required to check for errors are given. This section deals with univariable and multivariable analyses. The next chapter will discuss the different multivariate analyses.</p>
+<section id="linear-regression" class="level3" data-number="14.2.1">
+<h3 data-number="14.2.1" class="anchored" data-anchor-id="linear-regression"><span class="header-section-number">14.2.1</span> Linear regression</h3>
+<p>A matrix description of parameter estimation is given here because it is easier to describe the multiple regression <span class="citation" data-cites="Draper1998">(<a href="references.html#ref-Draper1998" role="doc-biblioref">Smith 1998</a>)</span>. <span class="math inline">\(Y= \beta_1X_1+ \beta_2X_2+...\beta_jX_j\)</span> A matrix is an array of data as rows and columns. For the imaging data, the individual voxel is represented on each column and each row refers to another patient. A vector refers to a matrix of one column.</p>
+<p>In matrix form, the multiple regression equation takes the form <span class="math inline">\(Y= \beta_j X + E\)</span> where X is the predictor matrix, Y is the dependent matrix, β is the regression coefficient and E is the error term (not the intercept). The X is a <span class="math inline">\(j^{th}\)</span> rows by ith columns matrix and Y and E is a <span class="math inline">\(j^{th}\)</span> column vector.</p>
+<p>Algebraic manipulation of equation 1, shows that the solution for β is <span class="math inline">\((X^TX)^{-1}X^TY\)</span>. <span class="math inline">\(X^T\)</span> is the transpose of X such that the columns of are now written as rows. The correlation matrix of X is given by <span class="math inline">\(X^TX\)</span>. The solution for β is possible if the correlation matrix <span class="math inline">\(X^TX\)</span> can be inverted. The inverse of a matrix can be found if it is has a square shape (columns and rows of the matrix are equal) and the determinant of the matrix is not singular or nonzero <span class="citation" data-cites="Draper1998">(<a href="references.html#ref-Draper1998" role="doc-biblioref">Smith 1998</a>)</span>. The uniqueness of the matrix inverse is that when a matrix is multiplied by its inverse, the solution is an identity matrix. The diagonal elements of a matrix are ones and the remainders of the square matrix are zeros for an identity matrix. For a rectangular matrix, multiplication of the matrix by its Moore-Penrose pseudo-inverse results in an identity matrix.</p>
+<p>The terms in the inverse of <span class="math inline">\(X^TX\)</span> are divided by the determinants of <span class="math inline">\(X^TX\)</span> . For simplicity, the determinant of a 2 x 2 matrix is given by <span class="math inline">\(ad-bc\)</span> for a matrix A. <span class="math inline">\(A=\left[\begin{array}{cc}a &amp; b\\c &amp; d\end{array}\right]\)</span> The inverse of this matrix A is given by <span class="math inline">\(\frac{1}{ad-bc}\left[\begin{array}{cc}d &amp; -b\\-c &amp; a\end{array}\right]\)</span> From this equation, it can be seen that the determinant and the inverse exist if the result is nonzero. For a correlation matrix <span class="math inline">\(X^TX\)</span> of the form <span class="math inline">\(\left[\begin{array}{cc}n &amp; nX_*\\nX_* &amp; nX_*^2\end{array}\right]\)</span> then the determinant is zero. <span class="math inline">\(n \times nX_*^2 -nX_* \times nX_*\)</span> Hence, there is no unique solution for this equation. If near collinearity exists and the determinant approach zero, there are infinite possible combinations that can result in a least squares estimate of the parameter. In this example, the matrix is singular then the columns of X are likely to be linearly related to each other (collinearity). In this case, the regression coefficient is unstable with the variance of the regression coefficient large. Further, small changes in the dependent variables lead to fluctuations in the regression solution.</p>
+<section id="leasts-squares" class="level4" data-number="14.2.1.1">
+<h4 data-number="14.2.1.1" class="anchored" data-anchor-id="leasts-squares"><span class="header-section-number">14.2.1.1</span> Leasts squares</h4>
+<p>The least squares solution for the parameter β refers to the fitting of the line between the intercept and the variables of X such that the Euclidian distance between the observed variables Y and expected or predicted variables are as small as possible. The metric for the fit is the sum of squared errors SSE (or residual mean square error/residual sum of squares) and is given by <span class="math inline">\(SSE=\sum(Y-\beta X)^T(Y-\beta X)\)</span> The variance-covariance matrix of <span class="math inline">\(\beta\)</span> is given by <span class="math inline">\(Var(\beta)=\delta^2(X^TX)\)</span></p>
+</section>
+<section id="collinearity" class="level4" data-number="14.2.1.2">
+<h4 data-number="14.2.1.2" class="anchored" data-anchor-id="collinearity"><span class="header-section-number">14.2.1.2</span> Collinearity</h4>
+<p>Collinearity or relatedness among the predictors is often forgotten in many analysis. This issue can lead to instability in the regression coefficients. There are several tests for collinearity: variance inflation factor and condition index. The variance inflation factor (VIF) is proportional to <span class="math inline">\(VIF = 1/1-R^2\)</span>. In this example, as the predictors become strogly correlated <span class="math inline">\(R^2\)</span> apporaches 1 and VIF will approaches infintity. Collinearity is present if VIF &gt;10<span class="citation" data-cites="Kleinbaum1978AppliedRA">(<a href="references.html#ref-Kleinbaum1978AppliedRA" role="doc-biblioref">Kleinbaum, Kupper, and Muller 1978</a>)</span>. Collinearity can also be assessed by measuring the condition index <span class="citation" data-cites="pmid16504541">(<a href="references.html#ref-pmid16504541" role="doc-biblioref">Phan et al. 2006</a>)</span>. This can be given as ratio between the largest and the corresponding eignvalue <span class="math inline">\(CI_i=\sqrt(\frac{\lamda_{max}{\lambda_i})\)</span>. Collinearity is present when the condition index is &gt;30<span class="citation" data-cites="Kleinbaum1978AppliedRA">(<a href="references.html#ref-Kleinbaum1978AppliedRA" role="doc-biblioref">Kleinbaum, Kupper, and Muller 1978</a>)</span>.</p>
+</section>
+<section id="weighted-least-squares" class="level4" data-number="14.2.1.3">
+<h4 data-number="14.2.1.3" class="anchored" data-anchor-id="weighted-least-squares"><span class="header-section-number">14.2.1.3</span> weighted least squares</h4>
+<p>In the section above, it was not stated explicitly but the least squares regression model is appropriate when the variances of the predictor variables are uniform <span class="citation" data-cites="Draper1998">(<a href="references.html#ref-Draper1998" role="doc-biblioref">Smith 1998</a>)</span>. In this case the variance of the error matrix is a diagonal matrix with equal diagonal elements. When there are unreliable data or errors in measurement of some of the data, the variance of the error matrix contains unequal diagonal elements. The consequence is that the least squares formula leads to instability of the parameter estimate. Weighted least squares regression is similar to least squares regression except that the variance matrix is weighted <span class="math inline">\(w\)</span> by the variance of the columns of the predictor variables. <span class="math inline">\(\beta=(X^TV^-1)^-1X^TV^-1Y\)</span>.The diagonal matrix <span class="math inline">\(V\)</span> contains weights expressed as 1/w along the diagonal elements. These weights are used to down play the importance of the regions where noise occurs and gives appropriate importance to the true data region. The result is a reduction in the variance of the regression coefficients and hence stability in their estimate. Weighted least squares is introduced here because the weighted PLS is used in the PLS-PLR model.</p>
+</section>
+</section>
+<section id="logistic-regression" class="level3" data-number="14.2.2">
+<h3 data-number="14.2.2" class="anchored" data-anchor-id="logistic-regression"><span class="header-section-number">14.2.2</span> Logistic regression</h3>
+<p>In logistic regression, there is no algebraic solution to determine the parameter estimate (β coefficient) and a numerical method (trial and error approach) such as maximum likelihood estimate is used to determine the parameter estimate. The General Linear Model <span class="math inline">\(Y=\beta X\)</span> is modified to the form of the Generalised Linear Model (GLIM) by adding a non-linear link function <span class="math inline">\(g(\mu)\)</span> . The equation now resembles <span class="math inline">\(Y=g(\beta X)\)</span>.</p>
+<p>Consider the binary response (1, 0) as proportions of the predictor variables. is the probability of an event and is the probability of an event not occurring. The odds ratio <span class="math inline">\(OR\)</span> is given by <span class="math inline">\(OR=\frac{1}{1-p}\)</span>. A logit transformation take the form <span class="math inline">\(\n=logit_i(p_i)=ln(\frac{p_i}{1-p_i})=\sum(X_ij\beta_i)\)</span>. The logistic equation takes the form <span class="math inline">\(p_i=\frac{e^{X_j\beta_j}}{1-e^{X_j\beta_j}}\)</span></p>
+<p>In summary, this book has no content whatsoever.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Kleinbaum1978AppliedRA" class="csl-entry" role="listitem">
+Kleinbaum, David G, Lawrence L. Kupper, and Keith E. Muller. 1978. <span>“Applied Regression Analysis and Other Multivariable Methods.”</span> In.
+</div>
+<div id="ref-pmid16504541" class="csl-entry" role="listitem">
+Phan, T. G., G. A. Donnan, M. Koga, L. A. Mitchell, M. Molan, G. Fitt, W. Chong, M. Holt, and D. C. Reutens. 2006. <span>“<span class="nocase"><span>T</span>he <span>A</span><span>S</span><span>P</span><span>E</span><span>C</span><span>T</span><span>S</span> template is weighted in favor of the striatocapsular region</span>.”</span> <em>Neuroimage</em> 31 (2): 477–81.
+</div>
+<div id="ref-Draper1998" class="csl-entry" role="listitem">
+Smith, Norman R. Draper. Harry. 1998. <em>Applied Regression Analysis, Third Edition</em>. 3rd ed. Wiley Series in Probability and Statistics. John Wiley &amp; Sons, Inc.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./geospatial-analysis.html" class="pagination-link" aria-label="Geospatial analysis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Geospatial analysis</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

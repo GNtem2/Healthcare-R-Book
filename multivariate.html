@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>7&nbsp; Multivariate Analysis – Healthcare-R-Book</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./machine-learning.html" rel="next">
+<link href="./statistics.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./multivariate.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Multivariate Analysis</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Healthcare-R-Book</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-wrangling-images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Medical Images</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-wrangling-signal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Signal processing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-wrangling-python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Python</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multivariate.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Multivariate Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./machine-learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Machine learning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./graph-theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Graph Theory</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./natural-language-processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Natural language processing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bayesian-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bayesian Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./operational-research.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Operational Research</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./geospatial-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Geospatial analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Appendix</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#multivariate-regression" id="toc-multivariate-regression" class="nav-link active" data-scroll-target="#multivariate-regression"><span class="header-section-number">7.1</span> Multivariate regression</a>
+  <ul class="collapse">
+  <li><a href="#penalised-regression" id="toc-penalised-regression" class="nav-link" data-scroll-target="#penalised-regression"><span class="header-section-number">7.1.1</span> Penalised regression</a></li>
+  <li><a href="#mars" id="toc-mars" class="nav-link" data-scroll-target="#mars"><span class="header-section-number">7.1.2</span> MARS</a></li>
+  <li><a href="#mixed-modelling" id="toc-mixed-modelling" class="nav-link" data-scroll-target="#mixed-modelling"><span class="header-section-number">7.1.3</span> Mixed modelling</a></li>
+  <li><a href="#generalized-estimating-equation-gee" id="toc-generalized-estimating-equation-gee" class="nav-link" data-scroll-target="#generalized-estimating-equation-gee"><span class="header-section-number">7.1.4</span> Generalized estimating equation (GEE)</a></li>
+  <li><a href="#group-based-trajectory-modelling" id="toc-group-based-trajectory-modelling" class="nav-link" data-scroll-target="#group-based-trajectory-modelling"><span class="header-section-number">7.1.5</span> Group-based Trajectory modelling</a></li>
+  <li><a href="#group-based-multivariate-trajectory" id="toc-group-based-multivariate-trajectory" class="nav-link" data-scroll-target="#group-based-multivariate-trajectory"><span class="header-section-number">7.1.6</span> Group based multivariate trajectory</a></li>
+  </ul></li>
+  <li><a href="#principal-component-analysis" id="toc-principal-component-analysis" class="nav-link" data-scroll-target="#principal-component-analysis"><span class="header-section-number">7.2</span> Principal component analysis</a>
+  <ul class="collapse">
+  <li><a href="#pca-with-mri" id="toc-pca-with-mri" class="nav-link" data-scroll-target="#pca-with-mri"><span class="header-section-number">7.2.1</span> PCA with MRI</a></li>
+  </ul></li>
+  <li><a href="#independent-component-analysis" id="toc-independent-component-analysis" class="nav-link" data-scroll-target="#independent-component-analysis"><span class="header-section-number">7.3</span> Independent component analysis</a></li>
+  <li><a href="#partial-least-squares" id="toc-partial-least-squares" class="nav-link" data-scroll-target="#partial-least-squares"><span class="header-section-number">7.4</span> Partial least squares</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Multivariate Analysis</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>The following section illustrates the different methods in multivariate analyses. These methods are not to be confused with the more multivariable analyses discussed under Statistics.</p>
+<section id="multivariate-regression" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="multivariate-regression"><span class="header-section-number">7.1</span> Multivariate regression</h2>
+<p>Multivariable and multivariate regression are often used interchangeably. Some use the term multivariate when there are more than one dependent variables. Multivariable regression refers to linear, logistic or survival curve analysis in the previous chapter. Multivariate regression refers to nested models or longitudinal models or more complex type of analyses described below.</p>
+<section id="penalised-regression" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="penalised-regression"><span class="header-section-number">7.1.1</span> Penalised regression</h3>
+<p>Penalized regression is a method used to overcome collinearity in the columns of the predictor variables. In the presence of collinearity among predictor variables, the inverse solution can be found by introducing a bias term to the correlation matrix. The effect of this bias term is that it leads to restriction in the size of the variance for the parameter estimate. The bias term can be in the form of L1 or L2 penalisation. Penalized regression can be used for linear or logistic regression.</p>
+<p>We used penalised logistic regression (PLR) to assess the relationship between the ASPECTS regions and stroke disability (binary outcome) <span class="citation" data-cites="pmid23838753">(<a href="references.html#ref-pmid23838753" role="doc-biblioref">Phan et al. 2013</a>)</span>. PLR can be conceptualized as a modification of logistic regression. In logistic regression, there is no algebraic solution to determine the parameter estimate (β coefficient) and a numerical method (trial and error approach) such as maximum likelihood estimate is used to determine the parameter estimate. In certain situations overfitting of the model may occur with the maximum likelihood method. This situation occurs when there is collinearity (relatedness) of the data. To circumvent this, a bias factor is introduced into the calculation to prevent overfitting of the model. The tuning (regularization) parameter for the bias factor is chosen from the quadratic of the norms of the parameter estimate. This method is known as PLR. This method also allows handling of a large number of interaction terms in the model. We employed a forward and backward stepwise PLR that used all the ASPECTS regions in the analysis, calling on the penalized function in R programming environment. This program automatically assessed the interaction of factors in the regression model in the following manner. The choice of factors to be added/deleted to the stepwise regression was based on the cost complexity statistic. The asymmetric hierarchy principle was used to determine the choice of interaction of factors. In this case, any factor retained in the model can form interactions with others that are already in the model and those that are not yet in the model. In this analysis, we have specified a maximum of 5 terms to be added to the selection procedure. The significance of the interactions was plotted using a previously described method. We regressed the dichotomized mRS score against ASPECTS regions, demographic variables (such as age and sex), physiological variables (such as blood pressure and serum glucose level) and treatment (rt-PA). The results are expressed as β coefficients rather than as odds ratio for consistency due to the presence of interaction terms.</p>
+<p>Penalised L1 regression can also be used for feature selection as the L1 penalisation will turn downweight the coefficient of redundant feature towards zeroes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mice)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'mice'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:stats':
+
+    filter</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    cbind, rbind</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"BreastCancer"</span>,<span class="at">package =</span> <span class="st">"mlbench"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(BreastCancer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Id"              "Cl.thickness"    "Cell.size"       "Cell.shape"     
+ [5] "Marg.adhesion"   "Epith.c.size"    "Bare.nuclei"     "Bl.cromatin"    
+ [9] "Normal.nucleoli" "Mitoses"         "Class"          </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#check for duplicates</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">duplicated</span>(BreastCancer))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#remove duplicates</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#keep Id to avoid creation of new duplicates</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#BreastCancer1&lt;-unique(BreastCancer) #reduce 699 to 691 rows</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#impute missing data</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#m is number of multiple imputation, default is 5</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#output is a list</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>imputed_Data <span class="ot">&lt;-</span> <span class="fu">mice</span>(BreastCancer, <span class="at">m=</span><span class="dv">5</span>, <span class="at">maxit =</span> <span class="dv">5</span>, <span class="at">method =</span> <span class="st">'pmm'</span>, <span class="at">seed =</span> <span class="dv">500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ iter imp variable
+  1   1  Bare.nuclei
+  1   2  Bare.nuclei
+  1   3  Bare.nuclei
+  1   4  Bare.nuclei
+  1   5  Bare.nuclei
+  2   1  Bare.nuclei
+  2   2  Bare.nuclei
+  2   3  Bare.nuclei
+  2   4  Bare.nuclei
+  2   5  Bare.nuclei
+  3   1  Bare.nuclei
+  3   2  Bare.nuclei
+  3   3  Bare.nuclei
+  3   4  Bare.nuclei
+  3   5  Bare.nuclei
+  4   1  Bare.nuclei
+  4   2  Bare.nuclei
+  4   3  Bare.nuclei
+  4   4  Bare.nuclei
+  4   5  Bare.nuclei
+  5   1  Bare.nuclei
+  5   2  Bare.nuclei
+  5   3  Bare.nuclei
+  5   4  Bare.nuclei
+  5   5  Bare.nuclei</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#choose among the 5 imputed dataset</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>completeData <span class="ot">&lt;-</span> <span class="fu">complete</span>(imputed_Data,<span class="dv">2</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#convert multiple columns to numeric</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#lapply output a list</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>BreastCancer2<span class="ot">&lt;-</span><span class="fu">lapply</span>(completeData[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">11</span>)], as.numeric) <span class="co">#list</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>BreastCancer2<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(BreastCancer2)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>BreastCancer2<span class="sc">$</span>Class<span class="ot">&lt;-</span>BreastCancer<span class="sc">$</span>Class</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#convert factor to numeric for calculatin of vif</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>BreastCancer2<span class="sc">$</span>Class<span class="ot">&lt;-</span><span class="fu">as.character</span>(BreastCancer2<span class="sc">$</span>Class)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>BreastCancer2<span class="sc">$</span>Class[BreastCancer2<span class="sc">$</span>Class<span class="sc">==</span><span class="st">"benign"</span>]<span class="ot">&lt;-</span><span class="dv">0</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>BreastCancer2<span class="sc">$</span>Class[BreastCancer2<span class="sc">$</span>Class<span class="sc">==</span><span class="st">"malignant"</span>]<span class="ot">&lt;-</span><span class="dv">1</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>BreastCancer2<span class="sc">$</span>Class<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(BreastCancer2<span class="sc">$</span>Class)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>BC <span class="ot">&lt;-</span> <span class="fu">unique</span>(BreastCancer2) <span class="co"># Remove duplicates</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="co">#check correlation</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggcorrplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: ggplot2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggcorrplot</span>(<span class="fu">cor</span>(BC),</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.mat=</span><span class="fu">cor_pmat</span>(BC),<span class="at">hc.order=</span>T, <span class="at">type=</span><span class="st">"lower"</span>, <span class="at">colors=</span><span class="fu">c</span>(<span class="st">"red"</span>,<span class="st">"white"</span>,<span class="st">"blue"</span>),<span class="at">tl.cex =</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="multivariate_files/figure-html/multivariate-analysis-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="mars" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="mars"><span class="header-section-number">7.1.2</span> MARS</h3>
+<p>Multivariate adaptive regression spline (MARS) is a non-linear regression method that fits a set of splines (hinge functions) to each of the predictor variables i.e.&nbsp;different hinge function for different variables <span class="citation" data-cites="pmid8548103">(<a href="references.html#ref-pmid8548103" role="doc-biblioref">Friedman and Roosen 1995</a>)</span>. As such, the method can be used to plot the relationship between each variable and outcome. Use in this way, the presence of any threshold effect on the predictors can be graphically visualized. The MARS method is implemented in R programming environment in the <em>earth</em> package.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(earth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: Formula</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: plotmo</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: plotrix</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: TeachingDemos</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>BC<span class="ot">&lt;-</span>BC[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>Fit<span class="ot">&lt;-</span><span class="fu">earth</span>(Class <span class="sc">~</span>.,<span class="at">data=</span> BC,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">nfold=</span><span class="dv">10</span>,<span class="at">ncross=</span><span class="dv">30</span>, <span class="at">varmod.method =</span> <span class="st">"none"</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">glm=</span><span class="fu">list</span>(<span class="at">family=</span>binomial))</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plotmo</span>(Fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> plotmo grid:    Cl.thickness Cell.size Cell.shape Marg.adhesion Epith.c.size
+                            4         1          1             1            2
+ Bare.nuclei Bl.cromatin Normal.nucleoli Mitoses
+           1           3               1       1</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="multivariate_files/figure-html/multivariate-analysis-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call: earth(formula=Class~., data=BC, glm=list(family=binomial), nfold=10,
+            ncross=30, varmod.method="none")
+
+GLM coefficients
+                          Class
+(Intercept)          -3.0367094
+h(Cl.thickness-4)     0.7610206
+h(5-Cell.size)       -0.4035770
+h(5-Cell.shape)      -0.6270418
+h(6-Bare.nuclei)     -0.5975594
+h(Bl.cromatin-3)     -0.6211132
+h(5-Bl.cromatin)     -0.8983521
+h(Bl.cromatin-5)      0.9870000
+h(Normal.nucleoli-2)  5.5785046
+h(4-Normal.nucleoli)  2.9930778
+h(Normal.nucleoli-4) -6.7265575
+h(Normal.nucleoli-8)  3.9273365
+h(3-Mitoses)         -1.1559421
+
+GLM (family binomial, link logit):
+ nulldev  df       dev  df   devratio     AIC iters converged
+ 889.065 689   101.133 677      0.886   127.1     8         1
+
+Earth selected 13 of 18 terms, and 7 of 9 predictors
+Termination condition: Reached nk 21
+Importance: Cell.size, Bare.nuclei, Cl.thickness, Normal.nucleoli, ...
+Number of terms at each degree of interaction: 1 12 (additive model)
+Earth GCV 0.03174149  RSS 20.3433  GRSq 0.8599283  RSq 0.8695166  CVRSq 0.8481011
+
+Note: the cross-validation sd's below are standard deviations across folds
+
+Cross validation:   nterms 12.38 sd 0.75    nvars 7.22 sd 0.50
+
+ CVRSq   sd ClassRate   sd MaxErr    sd   AUC    sd MeanDev    sd CalibInt   sd
+ 0.848 0.05     0.963 0.02     -1 0.859 0.991 0.008   0.252 0.162     6.01 46.7
+ CalibSlope   sd
+       13.6 57.5</code></pre>
+</div>
+</div>
+</section>
+<section id="mixed-modelling" class="level3" data-number="7.1.3">
+<h3 data-number="7.1.3" class="anchored" data-anchor-id="mixed-modelling"><span class="header-section-number">7.1.3</span> Mixed modelling</h3>
+<p>In a standard regression analysis, the data is assumed to be random. Mixed models assume that there are more than one source of random variability in the data. This is expressed in terms of fixed and random effects. Mixed modeling is a useful technique for handling multilevel or group data. The intraclass correlation (ICC) is used to determine if a multilevel analysis is necessary ie if the infarct volume varies among the surgeon or not. ICC is the between group variance to the total variance. If the ICC approaches zero then a simple regression model would suffice.</p>
+<p>There are several R packages for performing mixed modeling such as <em>lme4</em>. Mixed modeling in meta-regression is illustrated in the section on Metaanalysis. An example of mixed model using Bayesian approach with INLA is provided in the [Bayesian section][INLA, Stan and BUGS]</p>
+<section id="random-intercept-model" class="level4" data-number="7.1.3.1">
+<h4 data-number="7.1.3.1" class="anchored" data-anchor-id="random-intercept-model"><span class="header-section-number">7.1.3.1</span> Random intercept model</h4>
+<p>In a random intercept or fixed slope multilevel model the slope or gradient of the fitted lines are assumed to be parallel to each other and the intercept varies for different groups. This can be the case of same treatment effect on animal experiments performed by different technician or same treatment in different clusters of hospitals. There are several approached to performing analysis with random intercept model. The choice of the model depends on the reason for performing the analysis. For example, the maximum likelihood estimation (MLE) method is better than restricted maximum likelihood (RMLE) in that it generates estimates for fixed effects and model comparison. RMLE is preferrred if there are outliers.</p>
+</section>
+<section id="random-slope-model" class="level4" data-number="7.1.3.2">
+<h4 data-number="7.1.3.2" class="anchored" data-anchor-id="random-slope-model"><span class="header-section-number">7.1.3.2</span> Random slope model</h4>
+<p>In a random slope model, the slopes are not paralleled</p>
+</section>
+</section>
+<section id="generalized-estimating-equation-gee" class="level3" data-number="7.1.4">
+<h3 data-number="7.1.4" class="anchored" data-anchor-id="generalized-estimating-equation-gee"><span class="header-section-number">7.1.4</span> Generalized estimating equation (GEE)</h3>
+<p>GEE is used for analysis of longitudinal or clustered data. GEE is preferred when the idea is to discover the group effect or population average (marginal) log odds <span class="citation" data-cites="pmid20220526">(<a href="references.html#ref-pmid20220526" role="doc-biblioref">Hubbard AE 2010</a>)</span>. This is contrast with the mixed model approach to evaluate the average subject via maximum likelihood estimation. The fitting for mixed model is complex compare to GEE and can breakdown. The library for performing GEE is <em>gee</em> or <em>geepack</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gee)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">#open simulated data from previous chapter</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>dtTime<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"./Data-Use/dtTime_simulated.csv"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">NIHSS=</span>Y) <span class="sc">%&gt;%</span> <span class="fu">mutate</span> (<span class="at">NIHSS=</span><span class="fu">abs</span>(NIHSS))</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>(fit<span class="ot">&lt;-</span><span class="fu">gee</span>(ENI<span class="sc">~</span>T<span class="sc">+</span>Diabetes<span class="sc">+</span>NIHSS,</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">id=</span>id, </span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">corstr =</span> <span class="st">"unstructured"</span>,</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">tol =</span> <span class="fl">0.001</span>, <span class="at">maxiter =</span> <span class="dv">25</span>,</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>         <span class="co">#data=dtTrial_long)</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">data=</span>dtTime))</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="group-based-trajectory-modelling" class="level3" data-number="7.1.5">
+<h3 data-number="7.1.5" class="anchored" data-anchor-id="group-based-trajectory-modelling"><span class="header-section-number">7.1.5</span> Group-based Trajectory modelling</h3>
+<p>Trajectory analysis attempts to group the behaviour of the subject of interest over time. There are several different approaches to trajectory analysis: data in raw form or after orthonal transformation of the data in principal component analysis. Trajectory analysis is different from mixed modelling in that it examines group behaviour. The output of trajectory analysis is only the beginning of the modeling analysis. For example, the analysis may identify that there are 3 groups. These groups are labelled as group A, B and C. The next step would be to use the results in a modelling analysis of your choice.</p>
+<section id="akmdoids" class="level4" data-number="7.1.5.1">
+<h4 data-number="7.1.5.1" class="anchored" data-anchor-id="akmdoids"><span class="header-section-number">7.1.5.1</span> Akmdoids</h4>
+<p>A useful library for performing trajectory analysis is <em>akmedoids</em>. This library anchored the analysis around the median value. The analysis requires the data in long format. This library has been removed from CRAN but an archived version is available for download. It requires installation of other libraries such as <em>kml</em> and <em>clusterCrit</em>. An issue with trajectory analysis is a way to identify the number of groups within the data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (simstudy)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (ggplot2)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span> (akmedoids)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="do">##trial NIHSS outcomes at timepoints</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="do">###MRCLEAN</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Control base NIHSS 18 (14-22)</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Control 24h NIHSS 16 (12-21)</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Control 5-7 day NIHSS 8 14 (7-18)</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Intervention base NIHSS17 (14-21)</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="co">#Intervention 24h NIHSS 13 (6-20)</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Intervention d5-7 NIHSS 8 (2-17)</span></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="do">##NIHSS connected between YO to Y1, Y1 to Y2</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="do">##NIHSS using means, not medians</span></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>def <span class="ot">&lt;-</span> <span class="fu">defData</span> (<span class="at">varname =</span> <span class="st">"T"</span>, <span class="at">dist =</span> <span class="st">"binary"</span>, <span class="at">formula =</span> <span class="fl">0.466</span>)</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>def <span class="ot">&lt;-</span> <span class="fu">defData</span> (def, <span class="at">varname =</span> <span class="st">"Y0"</span>, <span class="at">dist =</span> <span class="st">"normal"</span>, <span class="at">formula =</span> <span class="st">"18 - 1*T"</span>, <span class="at">variance =</span> <span class="st">"4 - 0.5*T"</span>)</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>def <span class="ot">&lt;-</span> <span class="fu">defData</span>(def, <span class="at">varname =</span> <span class="st">"Y1"</span>, <span class="at">dist =</span> <span class="st">"normal"</span>, <span class="at">formula =</span> <span class="st">"Y0 - 1.5 - 2 * T"</span>, <span class="at">variance =</span> <span class="st">"4.5 + 2.5*T"</span>)</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>def <span class="ot">&lt;-</span> <span class="fu">defData</span>(def, <span class="at">varname =</span> <span class="st">"Y2"</span>, <span class="at">dist =</span> <span class="st">"normal"</span>, <span class="at">formula =</span> <span class="st">"Y1 - 3.5"</span>, <span class="at">variance =</span> <span class="st">"6+ 1.5 * T"</span>)</span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a><span class="co">#generate data frame</span></span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>dtTrial <span class="ot">&lt;-</span> <span class="fu">genData</span>(<span class="dv">500</span>, def)</span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>dtTrial [dtTrial <span class="sc">&lt;</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a><span class="co">#putting the 4 time periods together</span></span>
+<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a>MRCLEAN <span class="ot">&lt;-</span> <span class="fu">addPeriods</span>(dtTrial, <span class="at">nPeriods =</span> <span class="dv">3</span>, <span class="at">idvars =</span> <span class="st">"id"</span>, <span class="at">timevars =</span> <span class="fu">c</span>(<span class="st">"Y0"</span>, <span class="st">"Y1"</span>, <span class="st">"Y2"</span>), <span class="at">timevarName =</span> <span class="st">"Y"</span>)</span>
+<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(MRCLEAN,<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">as.factor</span>(period),<span class="at">y=</span>Y))<span class="sc">+</span><span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="fu">as.factor</span>(T),<span class="at">group=</span>id))<span class="sc">+</span><span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#e38e17"</span>, <span class="st">"#8e17e3"</span>)) <span class="sc">+</span>  <span class="fu">xlab</span>(<span class="st">"Time"</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">"NIHSS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="multivariate_files/figure-html/multivariate-analysis-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="do">###akmedoids MRCLEAN</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>dtTrial2 <span class="ot">&lt;-</span> dtTrial [,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)] </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="do">##cluster output</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>cluster_output <span class="ot">&lt;-</span> <span class="fu">akclustr</span>(dtTrial2, <span class="at">id_field =</span> <span class="cn">TRUE</span>, <span class="at">method =</span> <span class="st">"linear"</span>, <span class="at">k =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">8</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Processing...."
+[1] ".............."
+[1] "solution of k = 3 determined!"
+[1] "solution of k = 4 determined!"
+[1] "solution of k = 5 determined!"
+[1] "solution of k = 6 determined!"
+[1] "solution of k = 7 determined!"
+[1] "solution of k = 8 determined!"</code></pre>
+</div>
+</div>
+<p>Plot</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#print cluster solution</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>cluster_output<span class="sc">$</span>qltyplot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="multivariate_files/figure-html/multivariate-analysis-6-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Determine the optimal number of groups.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#print cluster solution</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>cluster_output<span class="sc">$</span>optimal_k</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.000001</code></pre>
+</div>
+</div>
+<p>Plot trajectory of clusters</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#assigning cluster membership to a variable</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>clustr <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(cluster_output<span class="sc">$</span>optimal_k) </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_akstats</span>(cluster_output, <span class="at">k=</span><span class="fu">round</span>(cluster_output<span class="sc">$</span>optimal_k,<span class="dv">0</span>), <span class="at">type=</span><span class="st">"lines"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$cluster_plot</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="multivariate_files/figure-html/multivariate-analysis-6-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Show the data</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#return the cluster to the original dataset for further analysis</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>dtTrial3<span class="ot">&lt;-</span><span class="fu">cbind</span>(dtTrial,clustr)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dtTrial3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   id T       Y0        Y1        Y2   clustr
+1:  1 0 18.87386 17.163907 17.792171 5.000001
+2:  2 1 18.98331 15.757665 11.874736 5.000001
+3:  3 1 17.84597 17.543321 14.375073 5.000001
+4:  4 1 18.24073 14.988760 11.199345 5.000001
+5:  5 1 14.87404  9.383915  8.201616 5.000001
+6:  6 1 16.30686 13.851734  8.247250 5.000001</code></pre>
+</div>
+</div>
+</section>
+<section id="traj" class="level4" data-number="7.1.5.2">
+<h4 data-number="7.1.5.2" class="anchored" data-anchor-id="traj"><span class="header-section-number">7.1.5.2</span> Traj</h4>
+<p>The <em>traj</em> library is similar to the one in <em>Stata</em>. It uses several steps including factor and k-mean cluster analyses to identify group structures <span class="citation" data-cites="pmid15528056">(<a href="references.html#ref-pmid15528056" role="doc-biblioref">Leffondre K 2004</a>)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(traj)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>traj_out<span class="ot">&lt;-</span><span class="fu">Step1Measures</span>(dtTrial2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Use factor analysis</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>traj_out1<span class="ot">&lt;-</span><span class="fu">Step2Selection</span>(traj_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>scree plot</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>traj_V<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(<span class="fu">t</span>(traj_out1<span class="sc">$</span>PC<span class="sc">$</span>Vaccounted))</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(traj_V<span class="sc">$</span><span class="st">`</span><span class="at">Proportion Var</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="multivariate_files/figure-html/multivariate-analysis-6-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The scree plot shows the optimal number of factors were 4</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>traj_out2<span class="ot">&lt;-</span><span class="fu">Step3Clusters</span>(traj_out1, <span class="at">nclusters =</span> <span class="dv">4</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(traj_out2<span class="sc">$</span>data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     ID                               
+[1,]  1 1 18.87386 17.163907 17.792171
+[2,]  2 2 18.98331 15.757665 11.874736
+[3,]  3 3 17.84597 17.543321 14.375073
+[4,]  4 4 18.24073 14.988760 11.199345
+[5,]  5 5 14.87404  9.383915  8.201616
+[6,]  6 6 16.30686 13.851734  8.247250</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="group-based-multivariate-trajectory" class="level3" data-number="7.1.6">
+<h3 data-number="7.1.6" class="anchored" data-anchor-id="group-based-multivariate-trajectory"><span class="header-section-number">7.1.6</span> Group based multivariate trajectory</h3>
+<p>In the section above we discuss handling one type of a repeated collected data over time. Here the focus is on grouping multiple types of repeated collected data based on their trajectory pattern over time. The <em>gbmt</em> library conceptualises the mutiple data types as a latent growth curve and uses an Expectation-Maximization (EM) algorithm <span class="citation" data-cites="doi10.1177/0962280216673085">(<a href="references.html#ref-doi10.1177/0962280216673085" role="doc-biblioref">D. S. Nagin and Tremblay 2018</a>)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gbmt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: Matrix</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="principal-component-analysis" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="principal-component-analysis"><span class="header-section-number">7.2</span> Principal component analysis</h2>
+<p>Principal component analysis (PCA) is a data dimension reduction method which can be applied to a large dataset to determine the latent variables (principal components) which best represent that set of data. A brief description of the method is described here and a more detailed description of the method can be found in review <span class="citation" data-cites="pmid10703049">(<a href="references.html#ref-pmid10703049" role="doc-biblioref">Friston et al. 2000</a>)</span>. The usual approach to PCA involves eigen analysis of a covariance matrix or singular value decomposition.</p>
+<p>PCA estimates an orthogonal transformation (variance maximising) to convert a set of observations of correlated variables into a set of values of uncorrelated (orthogonal) variables called principal components. The first extracted principal component aligns in the direction that contains most of the variance of observed variables. The next principal component is orthogonal to the first principle component and contains the second most of spread of variance. The next component contains the third most of spread, and so on. The latter principal components are likely to represent noise and are discarded. Expressing this in terms of our imaging data, each component yields a linear combination of ‘ischemic’ voxels that covary with each other. These components can be interpreted as patterns of ischemic injury. The unit of measurement in PCA images is the covariance of the data.</p>
+<p>In the case of MR images, each voxel is a variable, leading to tens of thousands of variables with relatively small numbers of samples. Specialised methods are required to compute principal components. There are situations in which PCA may not work well if there is non-linear relationship in the data.</p>
+<p>Based on cosine rule, principal components from different data are similar if values approach 1 and dissimilar if values approach 0 <span class="citation" data-cites="pmid22551679">(<a href="references.html#ref-pmid22551679" role="doc-biblioref">Singhal et al. 2012</a>)</span>.</p>
+<section id="pca-with-mri" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="pca-with-mri"><span class="header-section-number">7.2.1</span> PCA with MRI</h3>
+<p>Here we illustrate multivariate analysis with <em>mand</em> library.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#modified commands from mand vignette</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mand)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: msma</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"atlas"</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"atlasdatasets"</span>)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"template"</span>)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>atlasdataset<span class="ot">=</span>atlasdatasets<span class="sc">$</span>aal</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>tmpatlas<span class="ot">=</span>atlas<span class="sc">$</span>aal</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="co">#overlay images</span></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="fu">coat</span>(template, tmpatlas, <span class="at">regionplot=</span><span class="cn">TRUE</span>, </span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a> <span class="at">atlasdataset=</span>atlasdataset, <span class="at">ROIids =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">41</span><span class="sc">:</span><span class="dv">44</span>), <span class="at">regionlegend=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="multivariate_files/figure-html/multivariate-analysis-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Simulate a dataset using <em>mand</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"diffimg"</span>) <span class="co">#mand</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"baseimg"</span>)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"mask"</span>)</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"sdevimg"</span>)</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>diffimg2 <span class="ot">=</span> diffimg <span class="sc">*</span> (tmpatlas <span class="sc">%in%</span> <span class="dv">41</span><span class="sc">:</span><span class="dv">44</span>)</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>img1 <span class="ot">=</span> <span class="fu">simbrain</span>(<span class="at">baseimg =</span> baseimg, <span class="at">diffimg =</span> diffimg2, </span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="at">sdevimg=</span>sdevimg, <span class="at">mask=</span>mask, <span class="at">n0=</span><span class="dv">20</span>, <span class="at">c1=</span><span class="fl">0.01</span>, <span class="at">sd1=</span><span class="fl">0.05</span>)</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a><span class="co">#dim(img1$S) #40 6422</span></span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a><span class="co">#mand takes matrix array as argument</span></span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>fit<span class="ot">=</span><span class="fu">msma</span>(img1<span class="sc">$</span>S,<span class="at">comp=</span><span class="dv">2</span>)</span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit, <span class="at">v=</span><span class="st">"score"</span>, <span class="at">axes =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">plottype=</span><span class="st">"scatter"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="multivariate_files/figure-html/multivariate-analysis-8-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>midx <span class="ot">=</span> <span class="dv">1</span> <span class="do">## the index for the modality</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>vidx <span class="ot">=</span> <span class="dv">1</span> <span class="do">## the index for the component</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>Q <span class="ot">=</span> fit<span class="sc">$</span>wbX[[midx]][,vidx]</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>outstat1 <span class="ot">=</span> <span class="fu">rec</span>(Q, img1<span class="sc">$</span>imagedim, <span class="at">mask=</span>img1<span class="sc">$</span>brainpos)</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="fu">coat</span>(template, outstat1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="multivariate_files/figure-html/multivariate-analysis-8-1-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#https://rdrr.io/cran/mand/f/vignettes/a_overview.Rmd</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="co">#https://rdrr.io/cran/caret/man/plsda.html</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s apply <em>mand</em> on imaging data. First we use pattern matching to extract the relevant nii files into a list.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">#remotes::install_github("neuroconductor/MNITemplate")</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MNITemplate)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="co">#MNI choose resolution</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>MNI <span class="ot">=</span> <span class="fu">readMNI</span>(<span class="at">res =</span> <span class="st">"2mm"</span>)</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="co">#create a list using pattern matching ending in .nii</span></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="co">#regular expression | indicates matching for ica.nii or mca_blur.nii</span></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>mca.list<span class="ot">&lt;-</span><span class="fu">list.files</span>(<span class="at">path=</span><span class="st">"./Ext-Data/"</span>,</span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">pattern =</span> <span class="st">"*ica.nii|*mca_blur.nii"</span>, </span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We use the <em>imgdatamat</em> function to read in the files with patients as rows and imaging voxels in columns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">#use imgdatamat to organise data as rows of patients and columns of voxels</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="co">#simscale reduces the size of the voxel to quarter of its size</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>m.list.dat<span class="ot">&lt;-</span><span class="fu">imgdatamat</span>(mca.list, <span class="at">simscale=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co">#check that the dimension is correct</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(m.list.dat<span class="sc">$</span>S) <span class="co">#42 902629</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]     29 902629</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>fit1<span class="ot">=</span><span class="fu">msma</span>(m.list.dat<span class="sc">$</span>S,<span class="at">comp=</span><span class="dv">2</span>)</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit1, <span class="at">v=</span><span class="st">"score"</span>, <span class="at">axes =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">plottype=</span><span class="st">"scatter"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="multivariate_files/figure-html/multivariate-analysis-8-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>midx <span class="ot">=</span> <span class="dv">1</span> <span class="do">## the index for the modality</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>vidx <span class="ot">=</span> <span class="dv">1</span> <span class="do">## the index for the component</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>Q <span class="ot">=</span> fit1<span class="sc">$</span>wbX[[midx]][,vidx]</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>outstat_fit1 <span class="ot">=</span> <span class="fu">rec</span>(Q, m.list.dat<span class="sc">$</span>imagedim, <span class="at">mask=</span>m.list.dat<span class="sc">$</span>brainpos)</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="fu">coat</span>(MNI, outstat_fit1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="multivariate_files/figure-html/multivariate-analysis-8-3-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="independent-component-analysis" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="independent-component-analysis"><span class="header-section-number">7.3</span> Independent component analysis</h2>
+<p>Independent component analysis is different from PCA in that it seeks components which are statistically independent.It separates signal from a multivariate distribution into additive components which as statistically independent. It is used in separating components of noise signal or blind source localisation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fastICA)</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">fastICA</span>(img1<span class="sc">$</span>S, <span class="dv">2</span>, <span class="at">alg.typ =</span> <span class="st">"deflation"</span>, <span class="at">fun =</span> <span class="st">"logcosh"</span>, <span class="at">alpha =</span> <span class="dv">1</span>,</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">method =</span> <span class="st">"R"</span>, <span class="at">row.norm =</span> <span class="cn">FALSE</span>, <span class="at">maxit =</span> <span class="dv">200</span>, </span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">tol =</span> <span class="fl">0.0001</span>, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Centering</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Whitening</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Deflation FastICA using logcosh approx. to neg-entropy function</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Component 1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Iteration 1 tol = 0.002084111</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Iteration 2 tol = 4.374718e-05</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Component 2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Iteration 1 tol = 0</code></pre>
+</div>
+</div>
+</section>
+<section id="partial-least-squares" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="partial-least-squares"><span class="header-section-number">7.4</span> Partial least squares</h2>
+<p>There are several versions of partial least squares (PLS). A detailed mathematical exposition of the PLS-PLR technique used here can be found in the paper by Fort and Lambert-Lacroix <span class="citation" data-cites="pmid15531609">(<a href="references.html#ref-pmid15531609" role="doc-biblioref">Fort and Lambert-Lacroix 2005</a>)</span>. PLS is a multiple regression method that is suited to datasets comprising large sets of independent predictor variables (voxels in an image) and smaller sets of dependent variables (neurological outcome scores). Each voxel can take on a value of 1 (representing involvement by infarction) or 0 (representing absence of involvement) in the MR image of each patient. PLS employs a data reduction method which generates latent variables, linear combinations of independent and dependent variables which explain as much of their covariance as possible.</p>
+<p>Linear least squares regression of the latent variables produces coefﬁcients or beta weights for the latent variables at each voxel location in the brain in stereotaxic coordinate space.<span class="citation" data-cites="pmid19660556">(<a href="references.html#ref-pmid19660556" role="doc-biblioref">Phan et al. 2010</a>)</span></p>
+<p>The colon dataset containing microarray data comes with the <em>plsgenomics</em> library <span class="citation" data-cites="pmid28968879">(<a href="references.html#ref-pmid28968879" role="doc-biblioref">Durif et al. 2018</a>)</span>. The analysis involves partitioning the data into training and test set. The classification data is in the Y column. This example is provided by the <em>plsgenomics</em> library</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plsgenomics)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>For any news related to the 'plsgenomics' package (update, corrected bugs), please check http://thoth.inrialpes.fr/people/gdurif/</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C++ based sparse PLS routines will soon be available on the CRAN in the new 'fastPLS' package.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"Colon"</span>)</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(Colon) <span class="co">#list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "list"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co">#62 samples 2000 genes</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Outcome is in Y column as 1 and 2. 62 rows</span></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="co">#2000 gene names</span></span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(Colon<span class="sc">$</span>X) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]   62 2000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co">#heatmap</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix.heatmap</span>(<span class="fu">cbind</span>(Colon<span class="sc">$</span>X,Colon<span class="sc">$</span>y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="multivariate_files/figure-html/multivariate-analysis-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>IndexLearn <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">sample</span>(<span class="fu">which</span>(Colon<span class="sc">$</span>Y<span class="sc">==</span><span class="dv">2</span>),<span class="dv">12</span>),<span class="fu">sample</span>(<span class="fu">which</span>(Colon<span class="sc">$</span>Y<span class="sc">==</span><span class="dv">1</span>),<span class="dv">8</span>))</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>Xtrain <span class="ot">&lt;-</span> Colon<span class="sc">$</span>X[IndexLearn,] </span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>Ytrain <span class="ot">&lt;-</span> Colon<span class="sc">$</span>Y[IndexLearn] </span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>Xtest <span class="ot">&lt;-</span> Colon<span class="sc">$</span>X[<span class="sc">-</span>IndexLearn,]</span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a><span class="co"># preprocess data </span></span>
+<span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a>resP <span class="ot">&lt;-</span> <span class="fu">preprocess</span>(<span class="at">Xtrain=</span> Xtrain, <span class="at">Xtest=</span>Xtest,<span class="at">Threshold =</span> <span class="fu">c</span>(<span class="dv">100</span>,<span class="dv">16000</span>),<span class="at">Filtering=</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">500</span>), <span class="at">log10.scale=</span><span class="cn">TRUE</span>,<span class="at">row.stand=</span><span class="cn">TRUE</span>)</span>
+<span id="cb76-9"><a href="#cb76-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-10"><a href="#cb76-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Determine optimum h and lambda</span></span>
+<span id="cb76-11"><a href="#cb76-11" aria-hidden="true" tabindex="-1"></a>hlam <span class="ot">&lt;-</span> <span class="fu">gsim.cv</span>(<span class="at">Xtrain=</span>resP<span class="sc">$</span>pXtrain,<span class="at">Ytrain=</span>Ytrain,<span class="at">hARange=</span><span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">20</span>),</span>
+<span id="cb76-12"><a href="#cb76-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">LambdaRange=</span><span class="fu">c</span>(<span class="fl">0.1</span>,<span class="dv">1</span>),<span class="at">hB=</span><span class="cn">NULL</span>)</span>
+<span id="cb76-13"><a href="#cb76-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-14"><a href="#cb76-14" aria-hidden="true" tabindex="-1"></a><span class="co"># perform prediction by GSIM </span></span>
+<span id="cb76-15"><a href="#cb76-15" aria-hidden="true" tabindex="-1"></a><span class="co"># lambda is the ridge regularization parameter from the cross validation</span></span>
+<span id="cb76-16"><a href="#cb76-16" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">gsim</span>(<span class="at">Xtrain=</span>resP<span class="sc">$</span>pXtrain, </span>
+<span id="cb76-17"><a href="#cb76-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">Ytrain=</span> Ytrain,<span class="at">Xtest=</span>resP<span class="sc">$</span>pXtest,</span>
+<span id="cb76-18"><a href="#cb76-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">Lambda=</span>hlam<span class="sc">$</span>Lambda,<span class="at">hA=</span>hlam<span class="sc">$</span>hA,<span class="at">hB=</span><span class="cn">NULL</span>)</span>
+<span id="cb76-19"><a href="#cb76-19" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>Cvg </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co">#difference between predicted and observed</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(res<span class="sc">$</span>Ytest<span class="sc">!=</span>Colon<span class="sc">$</span>Y[<span class="sc">-</span>IndexLearn])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6</code></pre>
+</div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-doi10.1177/0962280216673085" class="csl-entry" role="listitem">
+D. S. Nagin, V. L. Passos, B. L. Jones, and R. E. Tremblay. 2018. <span>“Group-Based Multi-Trajectory Modeling.”</span> <em>Statistical Methods in Medical Research</em> 27: 2015–23. <a href="https://doi.org/10.1177/0962280216673085">https://doi.org/10.1177/0962280216673085</a>.
+</div>
+<div id="ref-pmid28968879" class="csl-entry" role="listitem">
+Durif, G., L. Modolo, J. Michaelsson, J. E. Mold, S. Lambert-Lacroix, and F. Picard. 2018. <span>“<span class="nocase"><span>H</span>igh dimensional classification with combined adaptive sparse <span>P</span><span>L</span><span>S</span> and logistic regression</span>.”</span> <em>Bioinformatics</em> 34 (3): 485–93.
+</div>
+<div id="ref-pmid15531609" class="csl-entry" role="listitem">
+Fort, G., and S. Lambert-Lacroix. 2005. <span>“<span class="nocase"><span>C</span>lassification using partial least squares with penalized logistic regression</span>.”</span> <em>Bioinformatics</em> 21 (7): 1104–11.
+</div>
+<div id="ref-pmid8548103" class="csl-entry" role="listitem">
+Friedman, J. H., and C. B. Roosen. 1995. <span>“<span class="nocase"><span>A</span>n introduction to multivariate adaptive regression splines</span>.”</span> <em>Stat Methods Med Res</em> 4 (3): 197–217.
+</div>
+<div id="ref-pmid10703049" class="csl-entry" role="listitem">
+Friston, K., J. Phillips, D. Chawla, and C. Buchel. 2000. <span>“<span class="nocase"><span>N</span>onlinear <span>P</span><span>C</span><span>A</span>: characterizing interactions between modes of brain activity</span>.”</span> <em>Philos. Trans. R. Soc. Lond., B, Biol. Sci.</em> 355 (1393): 135–46.
+</div>
+<div id="ref-pmid20220526" class="csl-entry" role="listitem">
+Hubbard AE, Fleischer NL, Ahern J. 2010. <span>“To GEE or Not to GEE: Comparing Population Average and Mixed Models for Estimating the Associations Between Neighborhood Risk Factors and Health.”</span> <em>Epidemiology</em> 21: 467–74. <a href="https://doi.org/10.1097/EDE.0b013e3181caeb9">https://doi.org/10.1097/EDE.0b013e3181caeb9</a>.
+</div>
+<div id="ref-pmid15528056" class="csl-entry" role="listitem">
+Leffondre K, Regeasse A, Abrahamowicz M. 2004. <span>“Statistical Measures Were Proposed for Identifying Longitudinal Patterns of Change in Quantitative Health Indicators.”</span> <em>J Clin Epidemiol</em> 57: 1049–62. <a href="https://doi.org/10.1016/j.jclinepi.2004.02.012">https://doi.org/10.1016/j.jclinepi.2004.02.012</a>.
+</div>
+<div id="ref-pmid19660556" class="csl-entry" role="listitem">
+Phan, T. G., J. Chen, G. Donnan, V. Srikanth, A. Wood, and D. C. Reutens. 2010. <span>“<span class="nocase"><span>D</span>evelopment of a new tool to correlate stroke outcome with infarct topography: a proof-of-concept study</span>.”</span> <em>Neuroimage</em> 49 (1): 127–33.
+</div>
+<div id="ref-pmid23838753" class="csl-entry" role="listitem">
+Phan, T. G., A. Demchuk, V. Srikanth, B. Silver, S. C. Patel, P. A. Barber, S. R. Levine, and M. D. Hill. 2013. <span>“<span class="nocase"><span>P</span>roof of concept study: relating infarct location to stroke disability in the <span>N</span><span>I</span><span>N</span><span>D</span><span>S</span> rt-<span>P</span><span>A</span> trial</span>.”</span> <em>Cerebrovasc. Dis.</em> 35 (6): 560–65.
+</div>
+<div id="ref-pmid22551679" class="csl-entry" role="listitem">
+Singhal, Shaloo, Jian Chen, Richard Beare, Henry Ma, John Ly, and Thanh G. Phan. 2012. <span>“Application of Principal Component Analysis to Study Topography of Hypoxic–Ischemic Brain Injury.”</span> <em>NeuroImage</em> 62 (1): 300–306. https://doi.org/<a href="https://doi.org/10.1016/j.neuroimage.2012.04.025">https://doi.org/10.1016/j.neuroimage.2012.04.025</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./statistics.html" class="pagination-link" aria-label="Statistics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Statistics</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./machine-learning.html" class="pagination-link" aria-label="Machine learning">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Machine learning</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

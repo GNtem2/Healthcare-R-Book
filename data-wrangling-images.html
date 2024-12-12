@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Medical Images – Healthcare-R-Book</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./data-wrangling-signal.html" rel="next">
+<link href="./data-wrangling.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-wrangling-images.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Medical Images</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Healthcare-R-Book</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-wrangling-images.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Medical Images</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-wrangling-signal.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Signal processing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-wrangling-python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Python</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./statistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multivariate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Multivariate Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./machine-learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Machine learning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./graph-theory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Graph Theory</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./natural-language-processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Natural language processing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bayesian-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bayesian Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./operational-research.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Operational Research</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./geospatial-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Geospatial analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Appendix</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#dicom-and-nifti-format" id="toc-dicom-and-nifti-format" class="nav-link active" data-scroll-target="#dicom-and-nifti-format"><span class="header-section-number">3.0.1</span> DICOM and nifti format</a></li>
+  <li><a href="#manipulating-array-of-medical-images" id="toc-manipulating-array-of-medical-images" class="nav-link" data-scroll-target="#manipulating-array-of-medical-images"><span class="header-section-number">3.0.2</span> Manipulating array of medical images</a></li>
+  <li><a href="#combining-arrays" id="toc-combining-arrays" class="nav-link" data-scroll-target="#combining-arrays"><span class="header-section-number">3.0.3</span> Combining arrays</a></li>
+  <li><a href="#math-operation-on-multidimensional-array" id="toc-math-operation-on-multidimensional-array" class="nav-link" data-scroll-target="#math-operation-on-multidimensional-array"><span class="header-section-number">3.0.4</span> Math operation on multidimensional array</a></li>
+  <li><a href="#math-operation-on-list" id="toc-math-operation-on-list" class="nav-link" data-scroll-target="#math-operation-on-list"><span class="header-section-number">3.0.5</span> Math operation on list</a></li>
+  <li><a href="#vectorising-nifti-object" id="toc-vectorising-nifti-object" class="nav-link" data-scroll-target="#vectorising-nifti-object"><span class="header-section-number">3.0.6</span> Vectorising nifti object</a></li>
+  <li><a href="#tar-file" id="toc-tar-file" class="nav-link" data-scroll-target="#tar-file"><span class="header-section-number">3.0.7</span> tar file</a></li>
+  <li><a href="#image-registration" id="toc-image-registration" class="nav-link" data-scroll-target="#image-registration"><span class="header-section-number">3.0.8</span> Image registration</a></li>
+  <li><a href="#rescaling" id="toc-rescaling" class="nav-link" data-scroll-target="#rescaling"><span class="header-section-number">3.0.9</span> Rescaling</a></li>
+  <li><a href="#mni-template" id="toc-mni-template" class="nav-link" data-scroll-target="#mni-template"><span class="header-section-number">3.0.10</span> MNI template</a></li>
+  <li><a href="#atlases" id="toc-atlases" class="nav-link" data-scroll-target="#atlases"><span class="header-section-number">3.0.11</span> Atlases</a></li>
+  <li><a href="#neurons-and-arteries" id="toc-neurons-and-arteries" class="nav-link" data-scroll-target="#neurons-and-arteries"><span class="header-section-number">3.1</span> Neurons and arteries</a>
+  <ul class="collapse">
+  <li><a href="#neurons" id="toc-neurons" class="nav-link" data-scroll-target="#neurons"><span class="header-section-number">3.1.1</span> Neurons</a></li>
+  <li><a href="#arteries" id="toc-arteries" class="nav-link" data-scroll-target="#arteries"><span class="header-section-number">3.1.2</span> Arteries</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Medical Images</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="dicom-and-nifti-format" class="level3" data-number="3.0.1">
+<h3 data-number="3.0.1" class="anchored" data-anchor-id="dicom-and-nifti-format"><span class="header-section-number">3.0.1</span> DICOM and nifti format</h3>
+<p>R can handle a variety of different data format. Medical images are stored as <em>DICOM</em> files for handling and converted to <em>nifti</em> files for analysis. The workhorses are the <em>oro.dicom</em> and <em>oro.nifti</em> libraries. Nifti is an S4 class object with multiple slots for data type. These slots can be accessed by typing the @ after the handle of the file. The values in an image can be evaluated using <em>range</em> function. Alternately, use <em>cal_max</em> and <em>cal_min</em> to perform the same task. It appears that in the conversion from minc file to nifti file, a scaling factor has been applied and transformed the values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(oro.nifti)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>oro.nifti 0.11.4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mca<span class="ot">&lt;-</span><span class="fu">readNIfTI</span>(<span class="st">"./Data-Use/mca_notpa.nii.gz"</span>, <span class="at">reorient =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(mca)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.000000000 0.001411765</code></pre>
+</div>
+</div>
+<p>The slots also contain information on whether the data has been scaled. This can be checked by accessing the <em>scl_slope</em> and <em>scl_inter</em> slots. These data on slope and intercept provide a mean of returning an image to its correct value.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>mca<span class="sc">@</span>scl_slope</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<p>To find available slots</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#find available of slots</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">slotNames</span>(mca)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] ".Data"          "sizeof_hdr"     "data_type"      "db_name"       
+ [5] "extents"        "session_error"  "regular"        "dim_info"      
+ [9] "dim_"           "intent_p1"      "intent_p2"      "intent_p3"     
+[13] "intent_code"    "datatype"       "bitpix"         "slice_start"   
+[17] "pixdim"         "vox_offset"     "scl_slope"      "scl_inter"     
+[21] "slice_end"      "slice_code"     "xyzt_units"     "cal_max"       
+[25] "cal_min"        "slice_duration" "toffset"        "glmax"         
+[29] "glmin"          "descrip"        "aux_file"       "qform_code"    
+[33] "sform_code"     "quatern_b"      "quatern_c"      "quatern_d"     
+[37] "qoffset_x"      "qoffset_y"      "qoffset_z"      "srow_x"        
+[41] "srow_y"         "srow_z"         "intent_name"    "magic"         
+[45] "extender"       "reoriented"    </code></pre>
+</div>
+</div>
+<p>In this example below we will simulated an image of dimensions 5 by 5 by 5. see [simulation using mand library][PCA with MRI].</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(oro.nifti)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>dims <span class="ot">=</span> <span class="fu">rep</span>(<span class="dv">5</span>, <span class="dv">3</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>SimArr <span class="ot">=</span> <span class="fu">array</span>(<span class="fu">rnorm</span>(<span class="dv">5</span><span class="sc">*</span><span class="dv">5</span><span class="sc">*</span><span class="dv">5</span>), <span class="at">dim =</span> dims)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>SimIm <span class="ot">=</span> oro.nifti<span class="sc">::</span><span class="fu">nifti</span>(SimArr)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(SimIm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>NIfTI-1 format
+  Type            : nifti
+  Data Type       : 2 (UINT8)
+  Bits per Pixel  : 8
+  Slice Code      : 0 (Unknown)
+  Intent Code     : 0 (None)
+  Qform Code      : 0 (Unknown)
+  Sform Code      : 0 (Unknown)
+  Dimension       : 5 x 5 x 5
+  Pixel Dimension : 1 x 1 x 1
+  Voxel Units     : Unknown
+  Time Units      : Unknown</code></pre>
+</div>
+</div>
+<p>View the simulated image.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>neurobase<span class="sc">::</span><span class="fu">ortho2</span>(SimIm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-wrangling-images_files/figure-html/Data-Wrangling-Images-1-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This section provides a brief introduction to viewing nifti files. Data are stored as rows, columns and slices. To view sagital image then assign a number to the row data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot mca #sagittal</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span>(mca[<span class="dv">50</span>,,]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-wrangling-images_files/figure-html/Data-Wrangling-Images-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To see coronal image, assign a number to the column data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot mca #coronal</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span>(mca[,<span class="dv">70</span>,]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-wrangling-images_files/figure-html/Data-Wrangling-Images-2-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To see axial image, assign a number to the slice data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot mca #axial in third column</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span>(mca[,,<span class="dv">35</span>]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-wrangling-images_files/figure-html/Data-Wrangling-Images-2-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="manipulating-array-of-medical-images" class="level3" data-number="3.0.2">
+<h3 data-number="3.0.2" class="anchored" data-anchor-id="manipulating-array-of-medical-images"><span class="header-section-number">3.0.2</span> Manipulating array of medical images</h3>
+<p>These arrays of medical images should be treated no differently from any other arrays. The imaging data are stored as arrays within the <em>.Data</em> slot in nifti.</p>
+<p>Data can be subset using the square bracket. The image is referred to x (right to left), y (front to back), z (superior to inferior).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(oro.nifti)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#extract data as array using @ function</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>img<span class="ot">&lt;-</span><span class="fu">readNIfTI</span>(<span class="st">"./Data-Use/mca_notpa.nii.gz"</span>, <span class="at">reorient =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>k<span class="ot">&lt;-</span>img<span class="sc">@</span>.Data</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#change x orientation to right to left 91*109*91</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>k1<span class="ot">&lt;-</span>k[<span class="dv">91</span><span class="sc">:</span><span class="dv">1</span>,,] </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">#access slice 35 to verify that the image orientation has been switched.</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span>(k1[,,<span class="dv">35</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-wrangling-images_files/figure-html/Data-Wrangling-Images-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>With the image now flipped to the other side, we can create an image by returning the array into its data slot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>img2<span class="ot">&lt;-</span>img</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>img2<span class="sc">@</span>.Data <span class="ot">&lt;-</span> k1</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>img2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>NIfTI-1 format
+  Type            : nifti
+  Data Type       : 16 (FLOAT32)
+  Bits per Pixel  : 32
+  Slice Code      : 0 (Unknown)
+  Intent Code     : 0 (None)
+  Qform Code      : 0 (Unknown)
+  Sform Code      : 1 (Scanner_Anat)
+  Dimension       : 91 x 109 x 91
+  Pixel Dimension : 2 x 2 x 2
+  Voxel Units     : mm
+  Time Units      : sec</code></pre>
+</div>
+</div>
+<p>Arrays can be manipulated to split an image into 2 separate images. Below is a function to split B0 and B1000 images from diffusion series.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#split dwi file into b0 and b1000</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#assume that b1000 is the second volume</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#dwi&lt;-readNIfTI("....nii.gz",reorient = F)</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>DWIsplit<span class="ot">&lt;-</span><span class="cf">function</span>(D) {</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  DWI<span class="ot">&lt;-</span><span class="fu">readNIfTI</span>(D,<span class="at">reorient =</span> F)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  b1000<span class="ot">&lt;-</span>dwi <span class="co">#dim (b1000) [1] 384 384  32   2</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  k<span class="ot">&lt;-</span>dwi<span class="sc">@</span>.Data</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  b1000k<span class="ot">&lt;-</span>k[,,,<span class="dv">2</span>] <span class="co">#dim(b1000k) [1] 384 384  32</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeNIfTI</span>(b1000k,<span class="st">"b1000"</span>)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Measurement of volume requires information on the dimensions of voxel.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#measure volume</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>A<span class="ot">=</span><span class="st">"./Ext-Data/3000F_mca_blur.nii"</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>VoxelDim<span class="ot">&lt;-</span><span class="cf">function</span>(A){</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(oro.nifti)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  img<span class="ot">&lt;-</span><span class="fu">readNIfTI</span>(A,<span class="at">reorient =</span> F)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  VoxDim<span class="ot">&lt;-</span><span class="fu">pixdim</span>(img)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>Volume<span class="ot">&lt;-</span><span class="fu">sum</span>(img<span class="sc">&gt;</span>.<span class="dv">5</span>)<span class="sc">*</span>VoxDim[<span class="dv">2</span>]<span class="sc">*</span>VoxDim[<span class="dv">3</span>]<span class="sc">*</span>VoxDim[<span class="dv">4</span>]<span class="sc">/</span><span class="dv">1000</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>Volume</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="fu">VoxelDim</span>(A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Malformed NIfTI - not reading NIfTI extension, use at own risk!</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 69</code></pre>
+</div>
+</div>
+<p>Find unsigned angle between 2 vectors k and k1</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Morpho<span class="sc">::</span><span class="fu">angle.calc</span>(k,k1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.570771</code></pre>
+</div>
+</div>
+<p>Determine centre of gravity of an object.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#centre of gravity</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>neurobase<span class="sc">::</span><span class="fu">cog</span>(img)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    dim1     dim2     dim3 
+65.74983 53.09204 46.67048 </code></pre>
+</div>
+</div>
+</section>
+<section id="combining-arrays" class="level3" data-number="3.0.3">
+<h3 data-number="3.0.3" class="anchored" data-anchor-id="combining-arrays"><span class="header-section-number">3.0.3</span> Combining arrays</h3>
+<p>This is an illustration of combining array using <em>cbind</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#stack arrays</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>k2<span class="ot">&lt;-</span><span class="fu">cbind</span>(k,k1)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(k2) <span class="do">### [1] 902629      2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 902629      2</code></pre>
+</div>
+</div>
+<p>The <em>abind</em> function produces a different array output. Later we will repeat the same exercise using <em>list</em> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#combine multi-dimensional arrays </span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>ab<span class="ot">&lt;-</span>abind<span class="sc">::</span><span class="fu">abind</span>(k,k1)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(ab) <span class="do">### [1]  91 109 182</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  91 109 182</code></pre>
+</div>
+</div>
+<p>This example uses 25 files. Rather than open one file at a time create a list from pattern matching.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(oro.nifti)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(abind)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(CHNOSZ) <span class="co"># for working with arrays</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>CHNOSZ version 2.0.0 (2023-03-13)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>reset: creating "thermo" object</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>OBIGT: loading default database with 1904 aqueous, 3448 total species</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'CHNOSZ'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:oro.nifti':
+
+    slice</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RNiftyReg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'RNiftyReg'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:oro.nifti':
+
+    pixdim, pixdim&lt;-</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#create a list using pattern matching</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>mca.list<span class="ot">&lt;-</span><span class="fu">list.files</span>(<span class="at">path=</span><span class="st">"./Ext-Data/"</span>,<span class="at">pattern =</span> <span class="st">"*.nii"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co">#length of list</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(mca.list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 42</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#read multiple files using lapply function</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co">#use lappy to read in the nifti files</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co">#note lapply returns a list</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>mca.list.nii <span class="ot">&lt;-</span> <span class="fu">lapply</span>(mca.list, readNIfTI)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Malformed NIfTI - not reading NIfTI extension, use at own risk!</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!
+Malformed NIfTI - not reading NIfTI extension, use at own risk!</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mca.list.nii)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "list"</code></pre>
+</div>
+</div>
+<p>This example illustrates how to view the first image in the list.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#view each image in the list</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>neurobase<span class="sc">::</span><span class="fu">ortho2</span>(mca.list.nii[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-wrangling-images_files/figure-html/Data-Wrangling-Images-4-2-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In this example, the first 3 segmented images from the list are averaged and viewed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#view average image</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>mca_ave3<span class="ot">&lt;-</span>(mca.list.nii[[<span class="dv">5</span>]]<span class="sc">+</span>mca.list.nii[[<span class="dv">6</span>]]<span class="sc">+</span>mca.list.nii[[<span class="dv">7</span>]])<span class="sc">/</span><span class="dv">3</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>neurobase<span class="sc">::</span><span class="fu">ortho2</span>(mca_ave3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-wrangling-images_files/figure-html/Data-Wrangling-Images-4-2-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The output below is the same as above but is performed on arrays. The <em>image_data</em> function from <em>oro.nifti</em> library extracts the image attribute from the slot .Data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#extract multiple arrays using lapply</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>mca.list.array<span class="ot">&lt;-</span><span class="fu">lapply</span>(mca.list.nii, img_data)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>m3<span class="ot">&lt;-</span>(mca.list.array[[<span class="dv">5</span>]]<span class="sc">+</span>mca.list.array[[<span class="dv">6</span>]]<span class="sc">+</span>mca.list.array[[<span class="dv">7</span>]])<span class="sc">/</span><span class="dv">3</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="co">#compare this with the output from above</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>neurobase<span class="sc">::</span><span class="fu">double_ortho</span>(m3, mca_ave3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-wrangling-images_files/figure-html/Data-Wrangling-Images-4-2-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Arrays can be extracted from list using <em>list2array</em> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mca.list.array)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "list"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#convert list to array</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="co">#CHNOSZ function</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>m.listarray<span class="ot">&lt;-</span>CHNOSZ<span class="sc">::</span><span class="fu">list2array</span>(mca.list.array)<span class="co">#91 109  91  25</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(m.listarray)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "array"</code></pre>
+</div>
+</div>
+</section>
+<section id="math-operation-on-multidimensional-array" class="level3" data-number="3.0.4">
+<h3 data-number="3.0.4" class="anchored" data-anchor-id="math-operation-on-multidimensional-array"><span class="header-section-number">3.0.4</span> Math operation on multidimensional array</h3>
+<p>Before illustrating more complex operations on ultidimensional array or tensor, let’s consider the basics of multidimensional array. The rank of a tensor represents the dimension of an array. Rank 0 represents 1 dimension and so on.</p>
+<p>Here we use <em>apply</em> function to average over every element of the multidimensional array. The first argument of <em>apply</em> is the array, the second argument is the margin or the component for analysis and the last argument is the function. If the idea is to analyse the row then the margin argument is <em>c(1)</em>, column then the margin argumen is <em>c(2)</em> and so on.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>ma<span class="ot">&lt;-</span><span class="fu">apply</span>(m.listarray,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), mean)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>neurobase<span class="sc">::</span><span class="fu">ortho2</span>(ma)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-wrangling-images_files/figure-html/Data-Wrangling-Images-4-3-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Thresholding can be performed using <em>mask_img</em> function. This function can also be used to create a mask.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>ma_mask<span class="ot">=</span>neurobase<span class="sc">::</span><span class="fu">mask_img</span>(ma, ma<span class="sc">&gt;</span><span class="fl">0.1</span>)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>neurobase<span class="sc">::</span><span class="fu">double_ortho</span>(ma_mask, ma)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-wrangling-images_files/figure-html/Data-Wrangling-Images-4-3-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="math-operation-on-list" class="level3" data-number="3.0.5">
+<h3 data-number="3.0.5" class="anchored" data-anchor-id="math-operation-on-list"><span class="header-section-number">3.0.5</span> Math operation on list</h3>
+<p>In this example we us <em>lapply</em> to a function within a list. This is an example of a functional or a function which takes a function as an input and return a vector as an output. In this example, a functional operates on one element of the list at a time. This example of functional is the same as the function <em>VoxelDim</em> describes above.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>vox<span class="ot">=</span><span class="fu">unlist</span>(<span class="fu">lapply</span>(mca.list.nii, </span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>           <span class="cf">function</span>(A) <span class="fu">sum</span>(A<span class="sc">&gt;</span>.<span class="dv">5</span>)<span class="sc">*</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>             <span class="co">#obtain voxel dimensions</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>             oro.nifti<span class="sc">::</span><span class="fu">pixdim</span>(A)[<span class="dv">2</span>]<span class="sc">*</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>             oro.nifti<span class="sc">::</span><span class="fu">pixdim</span>(A)[<span class="dv">3</span>]<span class="sc">*</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>             oro.nifti<span class="sc">::</span><span class="fu">pixdim</span>(A)[<span class="dv">4</span>]<span class="sc">/</span><span class="dv">1000</span></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>           ))</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>vox</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]   0.000   0.000   0.000   0.000  69.000   3.624   8.768  58.200 326.760
+[10]   1.608   0.000   3.904   3.328  66.776 106.976  70.928  26.912  11.768
+[19]  17.592  14.720 151.872  87.528   0.000  24.192  80.248 152.792  69.552
+[28]  25.576   0.000   8.644   4.230   3.781   3.643   5.720   5.061   8.644
+[37]   4.230   3.781   3.643   5.720   5.061  43.968</code></pre>
+</div>
+</div>
+</section>
+<section id="vectorising-nifti-object" class="level3" data-number="3.0.6">
+<h3 data-number="3.0.6" class="anchored" data-anchor-id="vectorising-nifti-object"><span class="header-section-number">3.0.6</span> Vectorising nifti object</h3>
+<p>One way of handling imaging data for analysis is to flatten the image, then create an empty array of the same size to return the image.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co">#flatten 3D</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>niivector <span class="ot">=</span> <span class="fu">as.vector</span>(img[,,]) <span class="co">#902629</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Create empty array of same size to fill up</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>niinew <span class="ot">=</span> <span class="fu">array</span>(<span class="dv">0</span>, <span class="at">dim=</span><span class="fu">dim</span>(img))</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a><span class="co">#return to 3D</span></span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>niinew <span class="ot">=</span> <span class="fu">array</span>(niivector, <span class="at">dim=</span><span class="fu">dim</span>(img))</span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a><span class="co">#confirm</span></span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>neurobase<span class="sc">::</span><span class="fu">ortho2</span>(niinew)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-wrangling-images_files/figure-html/Data-Wrangling-Images-4-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Another way of creating vector from the image is to use <em>c</em> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co">#vector can also be created using c</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>niivector2 <span class="ot">=</span> <span class="fu">c</span>(img[,,]) <span class="co">#902629</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="tar-file" class="level3" data-number="3.0.7">
+<h3 data-number="3.0.7" class="anchored" data-anchor-id="tar-file"><span class="header-section-number">3.0.7</span> tar file</h3>
+<p>Image files can be large and are often stored as tar files. The <em>tar</em> (tgz file), <em>untar</em>, <em>zip</em> (gz file) and <em>unzip</em> function are from the <em>utils</em> library.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>colin_1mm<span class="ot">&lt;-</span><span class="fu">untar</span>(<span class="st">"./Data-Use/colin_1mm.tgz"</span>)</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>colinIm<span class="ot">&lt;-</span><span class="fu">readNIfTI</span>(<span class="st">"colin_1mm"</span>) <span class="co">#1 x 1 x 1</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(colinIm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "nifti"
+attr(,"package")
+[1] "oro.nifti"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>neurobase<span class="sc">::</span><span class="fu">ortho2</span>(colinIm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-wrangling-images_files/figure-html/Data-Wrangling-Images-4-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The <em>readNIfTI</em> call can open gz file without the need to call <em>unzip</em> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RNiftyReg)</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>epi_t2<span class="ot">&lt;-</span> <span class="fu">readNIfTI</span>(<span class="fu">system.file</span>(<span class="st">"extdata"</span>, <span class="st">"epi_t2.nii.gz"</span>, <span class="at">package=</span><span class="st">"RNiftyReg"</span>))</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(epi_t2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "nifti"
+attr(,"package")
+[1] "oro.nifti"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>neurobase<span class="sc">::</span><span class="fu">ortho2</span>(epi_t2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-wrangling-images_files/figure-html/Data-Wrangling-Images-4-6-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="image-registration" class="level3" data-number="3.0.8">
+<h3 data-number="3.0.8" class="anchored" data-anchor-id="image-registration"><span class="header-section-number">3.0.8</span> Image registration</h3>
+<p>There are many different libraries for performing registration.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RNiftyReg)</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="co">#example from data</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>source<span class="ot">&lt;-</span><span class="fu">readNifti</span>(<span class="st">"./Data-Use/mca10_pca10_border10.nii.gz"</span>)</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="fu">pixdim</span>(source)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 2 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>colin_1mm<span class="ot">&lt;-</span><span class="fu">untar</span>(<span class="st">"./Data-Use/colin_1mm.tgz"</span>)</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>target<span class="ot">&lt;-</span><span class="fu">readNifti</span>(<span class="st">"colin_1mm"</span>)</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pixdim</span>(target)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 1 1 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>target</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Image array of mode "double" (54.2 Mb)
+- 181 x 217 x 181 x 1 voxels
+- 1 x 1 x 1 mm x 1 s per voxel</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co">#register source to target </span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">niftyreg</span>(source, target)</span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="co">#affine transformation</span></span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>result<span class="sc">$</span>forwardTransforms</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+NiftyReg affine matrix:
+    0.773388    0.569432    0.471194    4.534728
+   -0.595046    0.720880   -0.807965  -19.901979
+   -0.562192   -0.069332    0.552411   21.512533
+    0.000000    0.000000    0.000000    1.000000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co">#image in target space</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>result<span class="sc">$</span>image</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Image array of mode "double" (54.2 Mb)
+- 181 x 217 x 181 voxels
+- 1 x 1 x 1 mm per voxel</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>neurobase<span class="sc">::</span><span class="fu">ortho2</span>(result<span class="sc">$</span>image)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-wrangling-images_files/figure-html/Data-Wrangling-Images-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Output from <em>RNiftyReg</em> are <em>niftiImage</em> objects. They can be converted to <em>oro.nifti</em> objects using <em>nii2oro</em> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>otarget<span class="ot">&lt;-</span><span class="fu">nii2oro</span>(target)</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>oimage<span class="ot">&lt;-</span><span class="fu">nii2oro</span>(result<span class="sc">$</span>image)</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a><span class="fu">overlay</span>(otarget, <span class="at">y=</span>oimage,<span class="at">z =</span> <span class="dv">90</span>, <span class="at">plot.type =</span> <span class="st">"single"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-wrangling-images_files/figure-html/Data-Wrangling-Images-5-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="rescaling" class="level3" data-number="3.0.9">
+<h3 data-number="3.0.9" class="anchored" data-anchor-id="rescaling"><span class="header-section-number">3.0.9</span> Rescaling</h3>
+<p>Perform affine registration and resampling of image using the transformation file.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co">#affine</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>ica1000<span class="ot">&lt;-</span><span class="fu">readNifti</span>(<span class="st">"./Ext-Data/1000M_ica.nii"</span>)</span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>ica1000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Image array of mode "double" (6.9 Mb)
+- 91 x 109 x 91 voxels
+- 2 x 2 x 2 mm per voxel</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>colin_affine<span class="ot">&lt;-</span><span class="fu">buildAffine</span>(<span class="at">source=</span>ica1000, <span class="at">target=</span>target)</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="co">#apply transformation from above</span></span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="co">#assume 1000M_ica.nii and source are in the same space</span></span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>colin_like<span class="ot">&lt;-</span><span class="fu">applyTransform</span>(colin_affine,ica1000)</span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>neurobase<span class="sc">::</span><span class="fu">ortho2</span>(colin_like)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-wrangling-images_files/figure-html/Data-Wrangling-Images-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Resampling an image to different dimensions. This example is different from above in which rescaling is performed as part of registration to higher resolution image. Here the <em>rescale</em> function from <em>RNiftyReg</em> library is used to change the dimensions from 1x1x1 mm to 2x2x2 mm.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>ica1000.rescale<span class="ot">&lt;-</span>RNiftyReg<span class="sc">::</span><span class="fu">rescale</span>(ica1000,<span class="fu">c</span>(.<span class="dv">5</span>,.<span class="dv">5</span>,.<span class="dv">5</span>))</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>ica1000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Image array of mode "double" (6.9 Mb)
+- 91 x 109 x 91 voxels
+- 2 x 2 x 2 mm per voxel</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co">#compare with rescale</span></span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>ica1000.rescale</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Image array of mode "double" (855.6 Kb)
+- 45 x 54 x 45 voxels
+- 4 x 4 x 4 mm per voxel</code></pre>
+</div>
+</div>
+</section>
+<section id="mni-template" class="level3" data-number="3.0.10">
+<h3 data-number="3.0.10" class="anchored" data-anchor-id="mni-template"><span class="header-section-number">3.0.10</span> MNI template</h3>
+<p>There are several different MRI templates. The well known one is the MNI 152 template <span class="citation" data-cites="pmid11545704">(<a href="references.html#ref-pmid11545704" role="doc-biblioref">Mazziotta J 2001</a>)</span>. This was developed from male right-handed medical students. The MNI 152 is also known as International Consortium for Brain Mapping (ICBM) 152.</p>
+</section>
+<section id="atlases" class="level3" data-number="3.0.11">
+<h3 data-number="3.0.11" class="anchored" data-anchor-id="atlases"><span class="header-section-number">3.0.11</span> Atlases</h3>
+<p>A list of available atlases for human and animals is available at <a href="https://loni.usc.edu/research/atlases." class="uri">https://loni.usc.edu/research/atlases.</a></p>
+<section id="aal-atlas" class="level4" data-number="3.0.11.1">
+<h4 data-number="3.0.11.1" class="anchored" data-anchor-id="aal-atlas"><span class="header-section-number">3.0.11.1</span> AAL atlas</h4>
+<p>The automated anatomical labeling (AAL) atlas of activation contains 45 volume of interest in each hemisphere <span class="citation" data-cites="pmid11771995">(<a href="references.html#ref-pmid11771995" role="doc-biblioref">Tzourio-Mazoyer N 2002</a>)</span>. The atlas is aligned to MNI 152 coordinates. The updated AAL has additional parcellation of orbitofrontal cortex. AAL3 update includes further parcellation of thalamus.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgl)</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(misc3d)</span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MNITemplate)</span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a><span class="co">#source("https://neuroconductor.org/neurocLite.R")</span></span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a><span class="co">#neuro_install('aal')</span></span>
+<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(aal)</span>
+<span id="cb84-7"><a href="#cb84-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(neurobase)</span>
+<span id="cb84-8"><a href="#cb84-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Linking to ImageMagick 6.9.12.3
+Enabled features: cairo, freetype, fftw, ghostscript, heic, lcms, pango, raw, rsvg, webp
+Disabled features: fontconfig, x11</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(oro.nifti)</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>img <span class="ot">=</span> <span class="fu">aal_image</span>()</span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>template <span class="ot">=</span> <span class="fu">readMNI</span>(<span class="at">res =</span> <span class="st">"2mm"</span>)</span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>cut <span class="ot">&lt;-</span> <span class="dv">4500</span></span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a>dtemp <span class="ot">&lt;-</span> <span class="fu">dim</span>(template)</span>
+<span id="cb86-7"><a href="#cb86-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-8"><a href="#cb86-8" aria-hidden="true" tabindex="-1"></a><span class="co"># All of the sections you can label</span></span>
+<span id="cb86-9"><a href="#cb86-9" aria-hidden="true" tabindex="-1"></a>labs <span class="ot">=</span> <span class="fu">aal_get_labels</span>()</span>
+<span id="cb86-10"><a href="#cb86-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-11"><a href="#cb86-11" aria-hidden="true" tabindex="-1"></a><span class="co"># highlight - in this case the Cingulate_Post_L</span></span>
+<span id="cb86-12"><a href="#cb86-12" aria-hidden="true" tabindex="-1"></a>cingulate <span class="ot">=</span> labs<span class="sc">$</span>index[<span class="fu">grep</span>(<span class="st">"Cingulate_Post_R"</span>, labs<span class="sc">$</span>name)]</span>
+<span id="cb86-13"><a href="#cb86-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-14"><a href="#cb86-14" aria-hidden="true" tabindex="-1"></a><span class="co">#mask of object for rendering</span></span>
+<span id="cb86-15"><a href="#cb86-15" aria-hidden="true" tabindex="-1"></a>mask <span class="ot">=</span> <span class="fu">remake_img</span>(<span class="at">vec =</span> img <span class="sc">%in%</span> cingulate, <span class="at">img =</span> img)</span>
+<span id="cb86-16"><a href="#cb86-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-17"><a href="#cb86-17" aria-hidden="true" tabindex="-1"></a><span class="co">#contour for MNI template</span></span>
+<span id="cb86-18"><a href="#cb86-18" aria-hidden="true" tabindex="-1"></a><span class="fu">contour3d</span>(template, <span class="at">x=</span><span class="dv">1</span><span class="sc">:</span>dtemp[<span class="dv">1</span>], <span class="at">y=</span><span class="dv">1</span><span class="sc">:</span>dtemp[<span class="dv">2</span>], <span class="at">z=</span><span class="dv">1</span><span class="sc">:</span>dtemp[<span class="dv">3</span>], <span class="at">level =</span> cut, <span class="at">alpha =</span> <span class="fl">0.1</span>, <span class="at">draw =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb86-19"><a href="#cb86-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-20"><a href="#cb86-20" aria-hidden="true" tabindex="-1"></a><span class="co">#contour for mask</span></span>
+<span id="cb86-21"><a href="#cb86-21" aria-hidden="true" tabindex="-1"></a><span class="fu">contour3d</span>(mask, <span class="at">level =</span> <span class="fu">c</span>(<span class="fl">0.5</span>), <span class="at">alpha =</span> <span class="fu">c</span>(<span class="fl">0.5</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">color=</span><span class="fu">c</span>(<span class="st">"red"</span>) )</span>
+<span id="cb86-22"><a href="#cb86-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-23"><a href="#cb86-23" aria-hidden="true" tabindex="-1"></a><span class="do">### add text</span></span>
+<span id="cb86-24"><a href="#cb86-24" aria-hidden="true" tabindex="-1"></a><span class="fu">text3d</span>(<span class="at">x=</span>dtemp[<span class="dv">1</span>]<span class="sc">/</span><span class="dv">2</span>, <span class="at">y=</span>dtemp[<span class="dv">2</span>]<span class="sc">/</span><span class="dv">2</span>, <span class="at">z =</span> dtemp[<span class="dv">3</span>]<span class="sc">*</span><span class="fl">0.98</span>, <span class="at">text=</span><span class="st">"Top"</span>)</span>
+<span id="cb86-25"><a href="#cb86-25" aria-hidden="true" tabindex="-1"></a><span class="fu">text3d</span>(<span class="at">x=</span><span class="sc">-</span><span class="fl">0.98</span>, <span class="at">y=</span>dtemp[<span class="dv">2</span>]<span class="sc">/</span><span class="dv">2</span>, <span class="at">z =</span> dtemp[<span class="dv">3</span>]<span class="sc">/</span><span class="dv">2</span>, <span class="at">text=</span><span class="st">"Right"</span>)</span>
+<span id="cb86-26"><a href="#cb86-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-27"><a href="#cb86-27" aria-hidden="true" tabindex="-1"></a><span class="co">#create movie</span></span>
+<span id="cb86-28"><a href="#cb86-28" aria-hidden="true" tabindex="-1"></a><span class="co">#movie file is saved to temporary folder</span></span>
+<span id="cb86-29"><a href="#cb86-29" aria-hidden="true" tabindex="-1"></a><span class="co">#movie3d(spin3d(),duration=30)</span></span>
+<span id="cb86-30"><a href="#cb86-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-31"><a href="#cb86-31" aria-hidden="true" tabindex="-1"></a><span class="co">#add digital map of mca territory</span></span>
+<span id="cb86-32"><a href="#cb86-32" aria-hidden="true" tabindex="-1"></a>MCA<span class="ot">&lt;-</span><span class="fu">readNIfTI</span>(<span class="st">"./Data-Use/MCA_average28_MAP_100.nii"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Malformed NIfTI - not reading NIfTI extension, use at own risk!</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mask2 = remake_img(vec = img %in% source, img = img)</span></span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contour3d</span>(template, <span class="at">x=</span><span class="dv">1</span><span class="sc">:</span>dtemp[<span class="dv">1</span>], <span class="at">y=</span><span class="dv">1</span><span class="sc">:</span>dtemp[<span class="dv">2</span>], <span class="at">z=</span><span class="dv">1</span><span class="sc">:</span>dtemp[<span class="dv">3</span>], <span class="at">level =</span> cut, <span class="at">alpha =</span> <span class="fl">0.1</span>, <span class="at">draw =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a><span class="co">#contour for mask</span></span>
+<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a><span class="fu">contour3d</span>(MCA, <span class="at">level =</span> <span class="fu">c</span>(<span class="fl">0.5</span>), <span class="at">alpha =</span> <span class="fu">c</span>(<span class="fl">0.5</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">color=</span><span class="fu">c</span>(<span class="st">"Yellow"</span>))</span>
+<span id="cb88-6"><a href="#cb88-6" aria-hidden="true" tabindex="-1"></a><span class="co">#add frontal</span></span>
+<span id="cb88-7"><a href="#cb88-7" aria-hidden="true" tabindex="-1"></a>angular <span class="ot">=</span> labs<span class="sc">$</span>index[<span class="fu">grep</span>(<span class="st">"Angular_R"</span>, labs<span class="sc">$</span>name)]</span>
+<span id="cb88-8"><a href="#cb88-8" aria-hidden="true" tabindex="-1"></a><span class="co">#mask of object for rendering</span></span>
+<span id="cb88-9"><a href="#cb88-9" aria-hidden="true" tabindex="-1"></a>mask2 <span class="ot">=</span> <span class="fu">remake_img</span>(<span class="at">vec =</span> img <span class="sc">%in%</span> angular, <span class="at">img =</span> img)</span>
+<span id="cb88-10"><a href="#cb88-10" aria-hidden="true" tabindex="-1"></a><span class="fu">contour3d</span>(mask2, <span class="at">level =</span> <span class="fu">c</span>(<span class="fl">0.5</span>), <span class="at">alpha =</span> <span class="fu">c</span>(<span class="fl">0.5</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">color=</span><span class="fu">c</span>(<span class="st">"red"</span>))</span>
+<span id="cb88-11"><a href="#cb88-11" aria-hidden="true" tabindex="-1"></a><span class="co">#add cingulate</span></span>
+<span id="cb88-12"><a href="#cb88-12" aria-hidden="true" tabindex="-1"></a><span class="fu">contour3d</span>(mask, <span class="at">level =</span> <span class="fu">c</span>(<span class="fl">0.5</span>), <span class="at">alpha =</span> <span class="fu">c</span>(<span class="fl">0.5</span>), <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">color=</span><span class="fu">c</span>(<span class="st">"blue"</span>))</span>
+<span id="cb88-13"><a href="#cb88-13" aria-hidden="true" tabindex="-1"></a><span class="do">### add text</span></span>
+<span id="cb88-14"><a href="#cb88-14" aria-hidden="true" tabindex="-1"></a><span class="fu">text3d</span>(<span class="at">x=</span>dtemp[<span class="dv">1</span>]<span class="sc">/</span><span class="dv">2</span>, <span class="at">y=</span>dtemp[<span class="dv">2</span>]<span class="sc">/</span><span class="dv">2</span>, <span class="at">z =</span> dtemp[<span class="dv">3</span>]<span class="sc">*</span><span class="fl">0.98</span>, <span class="at">text=</span><span class="st">"Top"</span>)</span>
+<span id="cb88-15"><a href="#cb88-15" aria-hidden="true" tabindex="-1"></a><span class="fu">text3d</span>(<span class="at">x=</span><span class="sc">-</span><span class="fl">0.98</span>, <span class="at">y=</span>dtemp[<span class="dv">2</span>]<span class="sc">/</span><span class="dv">2</span>, <span class="at">z =</span> dtemp[<span class="dv">3</span>]<span class="sc">/</span><span class="dv">2</span>, <span class="at">text=</span><span class="st">"Right"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="eve-template" class="level4" data-number="3.0.11.2">
+<h4 data-number="3.0.11.2" class="anchored" data-anchor-id="eve-template"><span class="header-section-number">3.0.11.2</span> Eve template</h4>
+<p>The Eve template is from John Hopkins <span class="citation" data-cites="pmid19385016">(<a href="references.html#ref-pmid19385016" role="doc-biblioref"><span>“Atlas-Based Whole Brain White Matter Analysis Using Large Deformation Diffeomorphic Metric Mapping: Application to Normal Elderly and Alzheimer’s Disease Participants.”</span> 2009</a>)</span>. It is a single subject high resolution white matter atlas that has been morphed into MNI 152 coordinates. The atlas is parcellated into 176 regions based on ICBM-DTI-81 atlas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co">#source("https://neuroconductor.org/neurocLite.R")</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="co">#neuro_install('EveTemplate', release = "stable", release_repo = "github")</span></span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EveTemplate)</span>
+<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a>eve_labels <span class="ot">=</span> <span class="fu">readEveMap</span>(<span class="at">type =</span> <span class="st">"II"</span>)</span>
+<span id="cb89-7"><a href="#cb89-7" aria-hidden="true" tabindex="-1"></a>eve_labels</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>NIfTI-1 format
+  Type            : nifti
+  Data Type       : 4 (INT16)
+  Bits per Pixel  : 16
+  Slice Code      : 0 (Unknown)
+  Intent Code     : 0 (None)
+  Qform Code      : 2 (Aligned_Anat)
+  Sform Code      : 1 (Scanner_Anat)
+  Dimension       : 181 x 217 x 181
+  Pixel Dimension : 1 x 1 x 1
+  Voxel Units     : mm
+  Time Units      : Unknown</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>neurobase<span class="sc">::</span><span class="fu">ortho2</span>(eve_labels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-wrangling-images_files/figure-html/Data-Wrangling-Images-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ dplyr::slice()  masks CHNOSZ::slice(), oro.nifti::slice()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>unique_labs <span class="ot">=</span> eve_labels <span class="sc">%&gt;%</span> </span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>  c <span class="sc">%&gt;%</span> </span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>  unique <span class="sc">%&gt;%</span> </span>
+<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a>  sort </span>
+<span id="cb94-5"><a href="#cb94-5" aria-hidden="true" tabindex="-1"></a>breaks <span class="ot">=</span> unique_labs</span>
+<span id="cb94-6"><a href="#cb94-6" aria-hidden="true" tabindex="-1"></a>rf <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">rev</span>(<span class="fu">brewer.pal</span>(<span class="dv">11</span>,<span class="st">'Spectral'</span>)))</span>
+<span id="cb94-7"><a href="#cb94-7" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">rf</span>(<span class="fu">length</span>(unique_labs))</span>
+<span id="cb94-8"><a href="#cb94-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-9"><a href="#cb94-9" aria-hidden="true" tabindex="-1"></a>neurobase<span class="sc">::</span><span class="fu">ortho2</span>(eve_labels, <span class="at">col =</span> cols, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, breaks))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-wrangling-images_files/figure-html/Data-Wrangling-Images-8-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="sensorimotor-tract-atlas" class="level4" data-number="3.0.11.3">
+<h4 data-number="3.0.11.3" class="anchored" data-anchor-id="sensorimotor-tract-atlas"><span class="header-section-number">3.0.11.3</span> Sensorimotor tract atlas</h4>
+<p>Template for corticofugal tracts from primary motor cortex, dorsal premotor cortex, ventral premotor cortex, supplementary motor area (SMA), pre-supplementary motor area (preSMA), and primary somatosensory cortex is available from <span class="citation" data-cites="pmid28334314">(<a href="references.html#ref-pmid28334314" role="doc-biblioref">Derek B Archer 2018</a>)</span>. Below is an illustration of the M1 tract obtained from LRNLAB.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>RightM1<span class="ot">&lt;-</span><span class="fu">readNifti</span>(<span class="st">"./Ext-Data/Right-M1-S-MATT.nii"</span>)</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>neurobase<span class="sc">::</span><span class="fu">ortho2</span>(RightM1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-wrangling-images_files/figure-html/Data-Wrangling-Images-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co">#to down weight the voxel from 1 mm to 2 mm</span></span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>RightM1.rescale<span class="ot">&lt;-</span>RNiftyReg<span class="sc">::</span><span class="fu">rescale</span>(RightM1,<span class="fu">c</span>(.<span class="dv">5</span>,.<span class="dv">5</span>,.<span class="dv">5</span>))</span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a>RightM1o<span class="ot">&lt;-</span><span class="fu">nii2oro</span>(RightM1)</span>
+<span id="cb96-5"><a href="#cb96-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-6"><a href="#cb96-6" aria-hidden="true" tabindex="-1"></a><span class="co">#dimensions of RightM1o (182 218 182) and eve_labels (181 217 181) are dissimilar</span></span>
+<span id="cb96-7"><a href="#cb96-7" aria-hidden="true" tabindex="-1"></a><span class="co">#overlay(eve_labels, y=RightM1o, z=90,plot.type="single")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="neurons-and-arteries" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="neurons-and-arteries"><span class="header-section-number">3.1</span> Neurons and arteries</h2>
+<p>The swc format is used for examining morphology of neurons <span class="citation" data-cites="doi10.1038/s41467-023-42931-x">(<a href="references.html#ref-doi10.1038/s41467-023-42931-x" role="doc-biblioref">K. Mehta and Ascoli 2023</a>)</span> or arteries <span class="citation" data-cites="DECROOCQ2023102912">(<a href="references.html#ref-DECROOCQ2023102912" role="doc-biblioref">Decroocq et al. 2023</a>)</span>. The file represent neurons or arteries as connected components. Example is provided from the <em>nat</em> library.</p>
+<section id="neurons" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="neurons"><span class="header-section-number">3.1.1</span> Neurons</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Registered S3 method overwritten by 'nat':
+  method             from
+  as.mesh3d.ashape3d rgl </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Some nat functions depend on a CMTK installation. See ?cmtk and README.md for details.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'nat'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:lubridate':
+
+    intersect, setdiff, union</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:dplyr':
+
+    intersect, setdiff, union</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:RNiftyReg':
+
+    xform</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:oro.nifti':
+
+    origin</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> Cell07PNs[[<span class="dv">1</span>]]</span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect its internal structure</span></span>
+<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 24
+ $ CellType     : chr "DA1"
+ $ NeuronName   : chr "EBH11R"
+ $ InputFileName: 'AsIs' chr "/GD/projects/PN2/TransformedTraces/DA1/EBH11R.tasc"
+ $ CreatedAt    : POSIXt[1:1], format: "2006-01-18 02:21:14"
+ $ NodeName     : Named chr "jefferis.joh.cam.ac.uk"
+  ..- attr(*, "names")= chr "nodename"
+ $ InputFileStat:'data.frame':  1 obs. of  10 variables:
+  ..$ size  : num 15379
+  ..$ isdir : logi FALSE
+  ..$ mode  : 'octmode' int 644
+  ..$ mtime : POSIXt[1:1], format: "2006-01-12 11:52:01"
+  ..$ ctime : POSIXt[1:1], format: "2006-01-12 11:52:01"
+  ..$ atime : POSIXt[1:1], format: "2006-01-18 02:21:14"
+  ..$ uid   : int 501
+  ..$ gid   : int 501
+  ..$ uname : chr "jefferis"
+  ..$ grname: chr "jefferis"
+ $ InputFileMD5 : Named chr "fcacee3f874cbe2c6ad96214e6fee337"
+  ..- attr(*, "names")= 'AsIs' chr "/GD/projects/PN2/TransformedTraces/DA1/EBH11R.tasc"
+ $ NumPoints    : int 180
+ $ StartPoint   : num 1
+ $ BranchPoints : num [1:16] 34 48 51 75 78 95 98 99 108 109 ...
+ $ EndPoints    : num [1:18] 1 42 59 62 80 85 96 100 102 112 ...
+ $ NumSegs      : int 33
+ $ SegList      :List of 33
+  ..$ : int [1:34] 1 2 3 4 5 6 7 8 9 10 ...
+  ..$ : int [1:9] 34 35 36 37 38 39 40 41 42
+  ..$ : num [1:7] 34 43 44 45 46 47 48
+  ..$ : int [1:4] 48 49 50 51
+  ..$ : int [1:9] 51 52 53 54 55 56 57 58 59
+  ..$ : num [1:4] 51 60 61 62
+  ..$ : num [1:14] 48 63 64 65 66 67 68 69 70 71 ...
+  ..$ : int [1:4] 75 76 77 78
+  ..$ : int [1:3] 78 79 80
+  ..$ : num [1:6] 78 81 82 83 84 85
+  ..$ : num [1:11] 75 86 87 88 89 90 91 92 93 94 ...
+  ..$ : int [1:2] 95 96
+  ..$ : num [1:3] 95 97 98
+  ..$ : int [1:2] 98 99
+  ..$ : int [1:2] 99 100
+  ..$ : num [1:3] 99 101 102
+  ..$ : num [1:7] 98 103 104 105 106 107 108
+  ..$ : int [1:2] 108 109
+  ..$ : int [1:4] 109 110 111 112
+  ..$ : num [1:4] 109 113 114 115
+  ..$ : int [1:3] 115 116 117
+  ..$ : num [1:3] 115 118 119
+  ..$ : int [1:3] 119 120 121
+  ..$ : num [1:14] 119 122 123 124 125 126 127 128 129 130 ...
+  ..$ : num [1:2] 108 135
+  ..$ : int [1:9] 135 136 137 138 139 140 141 142 143
+  ..$ : int [1:6] 143 144 145 146 147 148
+  ..$ : num [1:7] 143 149 150 151 152 153 154
+  ..$ : num [1:7] 135 155 156 157 158 159 160
+  ..$ : int [1:6] 160 161 162 163 164 165
+  ..$ : num [1:5] 160 166 167 168 169
+  ..$ : int [1:4] 169 170 171 172
+  ..$ : num [1:9] 169 173 174 175 176 177 178 179 180
+ $ d            :'data.frame':  180 obs. of  7 variables:
+  ..$ PointNo: int [1:180] 1 2 3 4 5 6 7 8 9 10 ...
+  ..$ Label  : num [1:180] 2 2 2 2 2 2 2 2 2 2 ...
+  ..$ X      : num [1:180] 187 187 188 188 188 ...
+  ..$ Y      : num [1:180] 133 131 130 129 129 ...
+  ..$ Z      : num [1:180] 88.2 90.6 93.1 95 97.5 ...
+  ..$ W      : num [1:180] 1.01 1.27 1.14 1.27 1.27 1.27 1.27 1.27 1.27 1.27 ...
+  ..$ Parent : num [1:180] -1 1 2 3 4 5 6 7 8 9 ...
+ $ OrientInfo   :List of 5
+  ..$ AxonOriented: logi TRUE
+  ..$ AVMPoint    : logi NA
+  ..$ AVLPoint    : logi NA
+  ..$ Scl         : num [1:3] 1 1 1
+  ..$ NewAxes     : num [1:3] 1 2 3
+ $ SegOrders    : num [1:33] 1 2 2 3 4 4 3 4 5 5 ...
+ $ MBPoints     : int [1:2] 34 48
+ $ LHBranchPoint: int 75
+ $ SegTypes     : num [1:33] 1 3 1 3 3 3 1 2 2 2 ...
+ $ AxonSegNos   :List of 3
+  ..$ PreMBAxons : int 1
+  ..$ MBAxons    : int 3
+  ..$ PostMBAxons: int 7
+ $ LHSegNos     : num [1:26] 8 9 10 11 12 13 14 15 16 17 ...
+ $ MBSegNos     :List of 2
+  ..$ : int 2
+  ..$ : num [1:3] 4 5 6
+ $ NumMBBranches: num 2
+ $ AxonLHEP     : num 72
+ - attr(*, "class")= chr [1:2] "neuron" "list"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summary of 3D points</span></span>
+<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">xyzmatrix</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       X               Y                Z        
+ Min.   :186.9   Min.   : 90.36   Min.   : 88.2  
+ 1st Qu.:225.6   1st Qu.: 97.56   1st Qu.:103.4  
+ Median :258.4   Median :102.70   Median :112.9  
+ Mean   :249.4   Mean   :104.03   Mean   :120.9  
+ 3rd Qu.:277.7   3rd Qu.:109.04   3rd Qu.:139.0  
+ Max.   :289.5   Max.   :132.71   Max.   :157.3  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co"># identify 3d location of endpoints</span></span>
+<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="fu">xyzmatrix</span>(n)[<span class="fu">endpoints</span>(n),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           X         Y         Z
+1   186.8660 132.70932  88.20393
+42  224.7067 109.86362 153.58749
+59  229.6343  92.30637 157.29700
+62  226.8855  90.36325 147.59602
+80  249.8864  93.59079 136.77795
+85  253.0099  90.94904 137.34921
+96  264.0801  98.53390 121.89463
+100 266.3223  98.73241 116.46558
+102 267.5460  98.59859 112.85608
+112 271.0762 102.67288 100.84955
+117 274.6128 100.92061 103.28772
+121 277.3920 102.19148 102.69473
+134 287.1214 101.43365 103.30740
+148 281.7958  96.63987 101.08075
+154 276.6551  95.09809  99.22113
+165 278.3287 113.75627 104.87700
+172 282.3069 111.93213 105.65492
+180 289.5364 111.96014 109.18281</code></pre>
+</div>
+</div>
+<p>Plotting a neuron</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-wrangling-images_files/figure-html/Data-Wrangling-Images-10-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="arteries" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="arteries"><span class="header-section-number">3.1.2</span> Arteries</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nat)</span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a>a<span class="ot">&lt;-</span><span class="fu">read.ngraph.swc</span>(<span class="st">"./Ext-Data/swc_files/BG0002.CNG.swc"</span>)</span>
+<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data-wrangling-images_files/figure-html/Data-Wrangling-Images-10-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-pmid19385016" class="csl-entry" role="listitem">
+<span>“Atlas-Based Whole Brain White Matter Analysis Using Large Deformation Diffeomorphic Metric Mapping: Application to Normal Elderly and Alzheimer’s Disease Participants.”</span> 2009. <em>Neuroimage</em> 46 (2): 486–99. <a href="https://doi.org/10.1016/j.neuroimage.2009.01.002">https://doi.org/10.1016/j.neuroimage.2009.01.002</a>.
+</div>
+<div id="ref-DECROOCQ2023102912" class="csl-entry" role="listitem">
+Decroocq, Méghane, Carole Frindel, Pierre Rougé, Makoto Ohta, and Guillaume Lavoué. 2023. <span>“Modeling and Hexahedral Meshing of Cerebral Arterial Networks from Centerlines.”</span> <em>Medical Image Analysis</em> 89: 102912. https://doi.org/<a href="https://doi.org/10.1016/j.media.2023.102912">https://doi.org/10.1016/j.media.2023.102912</a>.
+</div>
+<div id="ref-pmid28334314" class="csl-entry" role="listitem">
+Derek B Archer, Stephen A Coombes, David E Vaillancourt. 2018. <span>“A Template and Probabilistic Atlas of the Human Sensorimotor Tracts Using Diffusion MRI.”</span> <em>Cerebral Cortex</em> 28 (5): 1685--1699. <a href="https://doi.org/10.1093/cercor/bhx066">https://doi.org/10.1093/cercor/bhx066</a>.
+</div>
+<div id="ref-doi10.1038/s41467-023-42931-x" class="csl-entry" role="listitem">
+K. Mehta, J. Ogden, B. Ljungquist, and G. A. Ascoli. 2023. <span>“Online Conversion of Reconstructed Neural Morphologies into Standardized SWC Format.”</span> <em>Nature Communications</em> 14: 7429. <a href="https://doi.org/10.1038/s41467-023-42931-x">https://doi.org/10.1038/s41467-023-42931-x</a>.
+</div>
+<div id="ref-pmid11545704" class="csl-entry" role="listitem">
+Mazziotta J, Evans A, Toga A. 2001. <span>“A Probabilistic Atlas and Reference System for the Human Brain: International Consortium for Brain Mapping (ICBM).”</span> <em>Philos Trans R Soc Lond B Biol Sci</em> 356 (1412): 1293–1322. <a href="https://doi.org/10.1098/rstb.2001.0915">https://doi.org/10.1098/rstb.2001.0915</a>.
+</div>
+<div id="ref-pmid11771995" class="csl-entry" role="listitem">
+Tzourio-Mazoyer N, Papathanassiou D, Landeau B. 2002. <span>“Automated Anatomical Labeling of Activations in SPM Using a Macroscopic Anatomical Parcellation of the MNI MRI Single-Subject Brain.”</span> <em>Neuroimage</em> 15 (1): 273–89. <a href="https://doi.org/10.1006/nimg.2001.0978">https://doi.org/10.1006/nimg.2001.0978</a>.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./data-wrangling.html" class="pagination-link" aria-label="Data Wrangling">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./data-wrangling-signal.html" class="pagination-link" aria-label="Signal processing">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Signal processing</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
